@@ -14,10 +14,8 @@ import android.widget.Toast;
 
 import com.example.claudiocavallaro.progettogad.ListAdapter;
 import com.example.claudiocavallaro.progettogad.R;
-import com.example.claudiocavallaro.progettogad.modello.Compagnie;
-import com.example.claudiocavallaro.progettogad.modello.Gestore;
 import com.example.claudiocavallaro.progettogad.modello.ModelloCardItem;
-import com.example.claudiocavallaro.progettogad.modello.Offerta;
+
 
 import java.util.ArrayList;
 import java.util.List;

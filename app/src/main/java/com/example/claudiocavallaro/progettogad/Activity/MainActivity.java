@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -19,7 +18,6 @@ import com.example.claudiocavallaro.progettogad.modello.Compagnie;
 import com.example.claudiocavallaro.progettogad.modello.Gestore;
 import com.example.claudiocavallaro.progettogad.modello.ModelloCardItem;
 import com.example.claudiocavallaro.progettogad.modello.Offerta;
-import com.example.claudiocavallaro.progettogad.persistenza.Mock;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        setInterface();
+        //setInterface();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -54,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void setInterface() {
+    /*private void setInterface() {
         Mock mock = new Mock();
         Compagnie c = mock.carica();
         List<Gestore> listaGestori = c.getListaGestori();
@@ -78,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         });
         mRecycler.setAdapter(listAdapter);
 
-    }
+    }*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

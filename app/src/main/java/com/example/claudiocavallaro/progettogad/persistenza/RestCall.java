@@ -4,11 +4,10 @@ import android.os.AsyncTask;
 
 import com.example.claudiocavallaro.progettogad.modello.ListaGestori;
 
-import java.util.List;
-
 /**
  * Created by claudiocavallaro on 27/11/15.
  */
+
 public class RestCall extends AsyncTask<Void, Void, Void> {
 
     private ListaGestori listaGestori = new ListaGestori();
@@ -16,7 +15,11 @@ public class RestCall extends AsyncTask<Void, Void, Void> {
 
     @Override
     protected Void doInBackground(Void... params) {
+        try {
 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return null;
     }
 }

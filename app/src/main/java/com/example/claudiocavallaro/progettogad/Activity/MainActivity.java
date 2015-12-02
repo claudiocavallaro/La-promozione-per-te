@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,7 +15,9 @@ import android.widget.Toast;
 
 import com.example.claudiocavallaro.progettogad.ListAdapter;
 import com.example.claudiocavallaro.progettogad.R;
+import com.example.claudiocavallaro.progettogad.modello.ListaGestori;
 import com.example.claudiocavallaro.progettogad.modello.ModelloCardItem;
+import com.example.claudiocavallaro.progettogad.persistenza.RestCall;
 
 
 import java.util.ArrayList;
@@ -26,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView mRecycler;
     private RecyclerView.LayoutManager layoutManager;
     private ListAdapter listAdapter;
+    private ListaGestori listaGestori = new ListaGestori();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,17 +38,21 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        RestCall call = new RestCall();
+        call.execute();
+
         //setInterface();
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        });
+        });*/
 
+        Log.v("lista", String.valueOf(ListaGestori.getListaGestori().size()));
 
     }
 

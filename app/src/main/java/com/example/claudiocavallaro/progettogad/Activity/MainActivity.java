@@ -1,5 +1,6 @@
 package com.example.claudiocavallaro.progettogad.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -44,14 +45,14 @@ public class MainActivity extends AppCompatActivity {
         RestCall call = new RestCall();
         call.execute();
 
-        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        });*/
+        });
 
         android.os.Handler handler = new android.os.Handler();
         handler.postDelayed(new Runnable() {
@@ -117,8 +118,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == R.id.info) {
+            Intent i = new Intent(MainActivity.this, InfoActivity.class);
+            startActivity(i);
         }
         return super.onOptionsItemSelected(item);
     }

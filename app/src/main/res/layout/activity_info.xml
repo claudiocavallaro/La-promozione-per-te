@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="9dp"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:text="Progetto GAD aa 2015/2016"
+        android:id="@+id/textView"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textInfo"
+        android:layout_below="@+id/textView"
+        android:layout_marginLeft="9dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="9dp"
+        android:text="Progetto di integrazione dei dati sui siti dei tre principali gestori telefonici\nScraping effettuato su:\n\n
+        - TIM\n
+        - WIND\n
+        - VODAFONE\n
+        - TRE\n
+\n
+I risultati sono ordinati per rapporto qualità prezzo, calcolato secondo le specifiche." />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textInfo"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center_horizontal"
+        android:text="Claudio Cavallaro\nAngelo Ranieri" />
+
+
+</LinearLayout>

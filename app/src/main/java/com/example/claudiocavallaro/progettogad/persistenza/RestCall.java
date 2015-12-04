@@ -3,6 +3,7 @@ package com.example.claudiocavallaro.progettogad.persistenza;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.example.claudiocavallaro.progettogad.R;
 import com.example.claudiocavallaro.progettogad.modello.Caratteristiche;
 import com.example.claudiocavallaro.progettogad.modello.Gestore;
 import com.example.claudiocavallaro.progettogad.modello.ListaGestori;
@@ -51,6 +52,18 @@ public class RestCall extends AsyncTask<Void, Void, Void> {
                     JSONArray id = array.getJSONArray(i);
                     String nome = id.getJSONObject(0).getString("Gestore");
                     Gestore g = new Gestore(nome);
+                    if (nome.equals("VODAFONE")) {
+                        g.setLogo(R.drawable.voda);
+                    }
+                    if (nome.equals("TIM")) {
+                        g.setLogo(R.drawable.tim);
+                    }
+                    if (nome.equals("WIND")) {
+                        g.setLogo(R.drawable.wind);
+                    }
+                    if (nome.equals("TRE")) {
+                        g.setLogo(R.drawable.tre);
+                    }
                     JSONArray promo = id.getJSONArray(1);
                     for (int j = 0; j < promo.length(); j++) {
                         Promozione p = new Promozione();
@@ -60,7 +73,8 @@ public class RestCall extends AsyncTask<Void, Void, Void> {
                         String rapportoP = promo.getJSONArray(j).getJSONObject(3).getString("RapportoQP");
 
                         p.setNome(nomeP);
-                        p.setCosto(new Double(costoP));
+                        double costo = new Double(costoP);
+                        p.setCosto(((int) costo));
                         p.setDurata(durataP);
                         p.setRapportoQP(new Double(rapportoP));
 
@@ -75,7 +89,8 @@ public class RestCall extends AsyncTask<Void, Void, Void> {
                                 p.addCaratteristica(caratteristiche);
                             }
                         }
-                        System.out.println(p);
+                        p.setGestore(g);
+                        //System.out.println(p);
                         g.addPromo(p);
                     }
                     ListaGestori.addGestore(g);

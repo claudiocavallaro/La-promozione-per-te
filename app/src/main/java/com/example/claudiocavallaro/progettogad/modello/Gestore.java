@@ -7,6 +7,7 @@ import java.util.ArrayList;
  */
 public class Gestore {
     private String nomeGestore;
+    private int logo;
     private ArrayList<Promozione> listaPromo = new ArrayList<Promozione>();
 
     public Gestore(String nomeGestore) {
@@ -31,5 +32,14 @@ public class Gestore {
 
     public String toString() {
         return this.nomeGestore;
+    }
+
+
+    public int getLogo() {
+        return logo;
+    }
+
+    public void setLogo(int logo) {
+        this.logo = logo;
     }
 }

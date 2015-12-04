@@ -15,12 +15,17 @@ import android.widget.Toast;
 
 import com.example.claudiocavallaro.progettogad.ListAdapter;
 import com.example.claudiocavallaro.progettogad.R;
+import com.example.claudiocavallaro.progettogad.modello.Caratteristiche;
+import com.example.claudiocavallaro.progettogad.modello.Gestore;
 import com.example.claudiocavallaro.progettogad.modello.ListaGestori;
 import com.example.claudiocavallaro.progettogad.modello.ModelloCardItem;
+import com.example.claudiocavallaro.progettogad.modello.Promozione;
 import com.example.claudiocavallaro.progettogad.persistenza.RestCall;
 
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.logging.Handler;
 import java.util.logging.LogRecord;
@@ -43,8 +48,6 @@ public class MainActivity extends AppCompatActivity {
         RestCall call = new RestCall();
         call.execute();
 
-        //setInterface();
-
         /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,24 +61,42 @@ public class MainActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Log.v("lista", String.valueOf(ListaGestori.getListaGestori().size()));
+                setInterface();
             }
         }, 2000);
 
 
     }
 
-    /*private void setInterface() {
-        Mock mock = new Mock();
-        Compagnie c = mock.carica();
-        List<Gestore> listaGestori = c.getListaGestori();
-        for (Gestore gestore : listaGestori){
-            List<Offerta> listaOfferte = gestore.getListaOfferte();
-            for (Offerta offerta : listaOfferte){
-                models.add(new ModelloCardItem(gestore.getLogo(), offerta.getNome(), offerta.getOfferta(), offerta.getPrezzo()));
+    private void setInterface() {
+        //ORDINAMENTO
+        ArrayList<Gestore> listaGestori = ListaGestori.getListaGestori();
+        List<Promozione> appoggio = new ArrayList<Promozione>();
+        for (Gestore gestore : listaGestori) {
+            List<Promozione> listaPromo = gestore.getListaPromo();
+            for (Promozione p : listaPromo) {
+                appoggio.add(p);
             }
         }
 
+        Collections.sort(appoggio, new Comparator<Promozione>() {
+            @Override
+            public int compare(Promozione lhs, Promozione rhs) {
+                if (lhs.getRapportoQP() == rhs.getRapportoQP()) {
+                    return 0;
+                } else if (lhs.getRapportoQP() > rhs.getRapportoQP()) {
+                    return -1;
+                }
+                return 1;
+            }
+        });
+        for (Promozione p : appoggio) {
+            String costo = String.valueOf((int) p.getCosto());
+            System.out.println(costo);
+            models.add(new ModelloCardItem(p.getGestore().getLogo(), p.getNome(), p.getOfferta(), costo + " €"));
+        }
+
+        //INTERFACCIA
         mRecycler = (RecyclerView) findViewById(R.id.recycler_view);
         layoutManager = new LinearLayoutManager(this);
         mRecycler.setLayoutManager(layoutManager);
@@ -84,12 +105,12 @@ public class MainActivity extends AppCompatActivity {
         listAdapter.setClickListener(new ListAdapter.ClickListener() {
             @Override
             public void itemClicked(View view, int position) {
-                Toast.makeText(getApplicationContext(),"ho cliccato " + models.get(position).getNome(), Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "ho cliccato " + models.get(position).getNome(), Toast.LENGTH_LONG).show();
             }
         });
         mRecycler.setAdapter(listAdapter);
 
-    }*/
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

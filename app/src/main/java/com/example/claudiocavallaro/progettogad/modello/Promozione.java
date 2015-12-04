@@ -8,17 +8,11 @@ import java.util.ArrayList;
 public class Promozione {
     String nome, tipoPromozione;
     private double rapportoQP;
-    private double costo;
+    private int costo;
     private String durata;
     private String info;
+    private Gestore gestore;
     private ArrayList<Caratteristiche> listaCaratteristiche = new ArrayList<Caratteristiche>();
-
-	/*public Promozione(String nome, String rapportoQP, String tipoPromozione, double costo) {
-        setNome(nome);
-		setRapportoQP(rapportoQP);
-		setTipoPromozione(tipoPromozione);
-		setCosto(costo);
-	}*/
 
     public ArrayList<Caratteristiche> getListaCaratteristiche() {
         return listaCaratteristiche;
@@ -32,7 +26,7 @@ public class Promozione {
         return costo;
     }
 
-    public void setCosto(double costo) {
+    public void setCosto(int costo) {
         this.costo = costo;
     }
 
@@ -80,8 +74,34 @@ public class Promozione {
         return this.durata;
     }
 
+    public String getOfferta() {
+        ArrayList<String> lista = new ArrayList<String>();
+        String tot = "";
+        for (Caratteristiche c : this.listaCaratteristiche) {
+            String singola;
+            if (c.getNomeCaratteristica().equals("Internet in 4G") || c.getNomeCaratteristica().equals("Internet in 3G")) {
+                singola = c.getQuantita() + " GB " + c.getNomeCaratteristica() + " ";
+            } else {
+                singola = c.getQuantita() + " " + c.getNomeCaratteristica() + " ";
+            }
+            lista.add(singola);
+        }
+        for (int i = 0; i < lista.size(); i++) {
+            tot += lista.get(i);
+        }
+        return tot;
+    }
+
     public String toString() {
         return this.nome + "\n" + "Prezzo : " + this.costo + "\nDurata : " + this.durata
                 + "\n" + "CARATTERISTICHE: \n" + this.listaCaratteristiche + "\n" + "INFORMAZIONI: \n" + this.getInfo() + "\n";
+    }
+
+    public Gestore getGestore() {
+        return gestore;
+    }
+
+    public void setGestore(Gestore gestore) {
+        this.gestore = gestore;
     }
 }

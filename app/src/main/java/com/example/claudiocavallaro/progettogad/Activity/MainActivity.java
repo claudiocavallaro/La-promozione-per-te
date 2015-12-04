@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,7 +14,6 @@ import android.widget.Toast;
 
 import com.example.claudiocavallaro.progettogad.ListAdapter;
 import com.example.claudiocavallaro.progettogad.R;
-import com.example.claudiocavallaro.progettogad.modello.Caratteristiche;
 import com.example.claudiocavallaro.progettogad.modello.Gestore;
 import com.example.claudiocavallaro.progettogad.modello.ListaGestori;
 import com.example.claudiocavallaro.progettogad.modello.ModelloCardItem;
@@ -27,8 +25,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.logging.Handler;
-import java.util.logging.LogRecord;
 
 public class MainActivity extends AppCompatActivity {
 

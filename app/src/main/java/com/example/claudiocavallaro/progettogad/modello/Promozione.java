@@ -81,6 +81,10 @@ public class Promozione {
             String singola;
             if (c.getNomeCaratteristica().equals("Internet in 4G") || c.getNomeCaratteristica().equals("Internet in 3G")) {
                 singola = c.getQuantita() + " GB " + c.getNomeCaratteristica() + " ";
+            } else if (c.getNomeCaratteristica().equals("Minuti illimitati verso un numero Vodafone")) {
+                singola = c.getNomeCaratteristica() + " ";
+            } else if (c.getQuantita().equals("Illimitati") && !(c.getNomeCaratteristica().equals("Minuti illimitati verso un numero Vodafone"))) {
+                singola = c.getNomeCaratteristica() + " " + c.getQuantita() + " ";
             } else {
                 singola = c.getQuantita() + " " + c.getNomeCaratteristica() + " ";
             }

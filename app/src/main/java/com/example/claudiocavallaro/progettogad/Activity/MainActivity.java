@@ -22,6 +22,8 @@ import com.example.claudiocavallaro.progettogad.persistenza.RestCall;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Handler;
+import java.util.logging.LogRecord;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView mRecycler;
     private RecyclerView.LayoutManager layoutManager;
     private ListAdapter listAdapter;
-    private ListaGestori listaGestori = new ListaGestori();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +54,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });*/
 
-        Log.v("lista", String.valueOf(ListaGestori.getListaGestori().size()));
+        android.os.Handler handler = new android.os.Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Log.v("lista", String.valueOf(ListaGestori.getListaGestori().size()));
+            }
+        }, 2000);
+
 
     }
 

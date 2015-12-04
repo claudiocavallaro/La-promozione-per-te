@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="9dp"
+    android:layout_marginTop="9dp">
+
+
+    <TextView
+        android:id="@+id/textGestore"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:textColor="@android:color/holo_red_light"
+        android:text="PROVA OFFERTA"
+        android:layout_marginTop="10dp"></TextView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textNomeOfferta"
+        android:layout_below="@+id/textGestore"
+        android:textSize="16dp"
+        android:layout_marginTop="10dp"
+        android:text="PROVA TITOLO"
+        android:layout_gravity="center_horizontal" />
+</LinearLayout>

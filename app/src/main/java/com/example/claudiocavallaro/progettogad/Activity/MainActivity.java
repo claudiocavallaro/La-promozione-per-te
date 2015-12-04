@@ -25,6 +25,7 @@ import com.example.claudiocavallaro.progettogad.persistenza.RestCall;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.FormatFlagsConversionMismatchException;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -45,14 +46,14 @@ public class MainActivity extends AppCompatActivity {
         RestCall call = new RestCall();
         call.execute();
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        });
+        });*/
 
         android.os.Handler handler = new android.os.Handler();
         handler.postDelayed(new Runnable() {
@@ -61,7 +62,6 @@ public class MainActivity extends AppCompatActivity {
                 setInterface();
             }
         }, 2000);
-
 
     }
 
@@ -89,7 +89,6 @@ public class MainActivity extends AppCompatActivity {
         });
         for (Promozione p : appoggio) {
             String costo = String.valueOf((int) p.getCosto());
-            System.out.println(costo);
             models.add(new ModelloCardItem(p.getGestore().getLogo(), p.getNome(), p.getOfferta(), costo + " €"));
         }
 
@@ -102,7 +101,11 @@ public class MainActivity extends AppCompatActivity {
         listAdapter.setClickListener(new ListAdapter.ClickListener() {
             @Override
             public void itemClicked(View view, int position) {
-                Toast.makeText(getApplicationContext(), "ho cliccato " + models.get(position).getNome(), Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), "ho cliccato " + models.get(position).getNome(), Toast.LENGTH_LONG).show();
+                Intent i = new Intent(MainActivity.this, CardActivity.class);
+                i.putExtra("promo", models.get(position).getNome());
+                startActivity(i);
+
             }
         });
         mRecycler.setAdapter(listAdapter);

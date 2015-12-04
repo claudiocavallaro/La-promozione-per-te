@@ -1,12 +1,17 @@
 package com.example.claudiocavallaro.progettogad.modello;
 
+import android.os.Parcelable;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by claudiocavallaro on 27/11/15.
  */
-public class Promozione {
-    String nome, tipoPromozione;
+public class Promozione implements Serializable {
+
+    private String nome;
+    private String tipoPromozione;
     private double rapportoQP;
     private int costo;
     private String durata;
@@ -97,8 +102,9 @@ public class Promozione {
     }
 
     public String toString() {
-        return this.nome + "\n" + "Prezzo : " + this.costo + "\nDurata : " + this.durata
-                + "\n" + "CARATTERISTICHE: \n" + this.listaCaratteristiche + "\n" + "INFORMAZIONI: \n" + this.getInfo() + "\n";
+        return "Nome : " + this.getNome();
+        /*this.nome + "\n" + "Prezzo : " + this.costo + "\nDurata : " + this.durata
+                + "\n" + "CARATTERISTICHE: \n" + this.listaCaratteristiche + "\n" + "INFORMAZIONI: \n" + this.getInfo() + "\n";*/
     }
 
     public Gestore getGestore() {

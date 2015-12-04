@@ -35,6 +35,15 @@ public class Gestore {
     }
 
 
+    public Promozione cercaPromozione(String nomePromo) {
+        for (Promozione p : this.listaPromo) {
+            if (p.getNome().equals(nomePromo)) {
+                return p;
+            }
+        }
+        return null;
+    }
+
     public int getLogo() {
         return logo;
     }

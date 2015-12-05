@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class Promozione implements Serializable {
 
     private String nome;
-
+    private int id;
     private double rapportoQP;
     private int costo;
     private String durata;
@@ -105,5 +105,13 @@ public class Promozione implements Serializable {
 
     public void setGestore(Gestore gestore) {
         this.gestore = gestore;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

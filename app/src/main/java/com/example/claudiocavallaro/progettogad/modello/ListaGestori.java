@@ -7,6 +7,7 @@ import java.util.ArrayList;
  */
 public class ListaGestori {
     private static ArrayList<Gestore> listaGestori = new ArrayList<Gestore>();
+    private static ArrayList<Promozione> listaPromozioni = new ArrayList<Promozione>();
 
     public static ArrayList<Gestore> getListaGestori() {
         return listaGestori;
@@ -14,5 +15,14 @@ public class ListaGestori {
 
     public static void addGestore(Gestore gestore) {
         listaGestori.add(gestore);
+    }
+
+
+    public static ArrayList<Promozione> getListaPromozioni() {
+        return listaPromozioni;
+    }
+
+    public static void setListaPromozioni(ArrayList<Promozione> listaPromozioni) {
+        ListaGestori.listaPromozioni = listaPromozioni;
     }
 }

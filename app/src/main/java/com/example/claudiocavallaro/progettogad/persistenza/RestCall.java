@@ -71,12 +71,14 @@ public class RestCall extends AsyncTask<Void, Void, Void> {
                         String costoP = promo.getJSONArray(j).getJSONObject(1).getString("Costo");
                         String durataP = promo.getJSONArray(j).getJSONObject(2).getString("Durata");
                         String rapportoP = promo.getJSONArray(j).getJSONObject(3).getString("RapportoQP");
+                        String infoP = promo.getJSONArray(j).getJSONObject(4).getString("Informazioni");
 
                         p.setNome(nomeP);
                         double costo = new Double(costoP);
                         p.setCosto(((int) costo));
                         p.setDurata(durataP);
                         p.setRapportoQP(new Double(rapportoP));
+                        p.setInfo(infoP);
 
                         JSONArray car = promo.getJSONArray(j).getJSONArray(5);
                         for (int y = 0; y < car.length(); y++) {
@@ -89,6 +91,7 @@ public class RestCall extends AsyncTask<Void, Void, Void> {
                                 p.addCaratteristica(caratteristiche);
                             }
                         }
+
                         p.setGestore(g);
                         //System.out.println(p);
                         g.addPromo(p);

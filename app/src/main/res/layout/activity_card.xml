@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginLeft="9dp"
+    android:layout_marginRight="9dp"
     android:layout_marginTop="9dp">
 
 
@@ -47,4 +48,21 @@
         android:textStyle="bold"
         android:text="10€ / 28 giorni"
         android:textColor="@android:color/holo_red_light" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textInformazioni"
+        android:textSize="16dp"
+        android:text="PROVA"
+        android:layout_below="@+id/textCosto"
+        android:layout_marginTop="15dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="VAI"
+        android:id="@+id/buttonLink"
+        android:layout_below="@+id/textInformazioni"
+        android:layout_marginTop="15dp" />
 </LinearLayout>

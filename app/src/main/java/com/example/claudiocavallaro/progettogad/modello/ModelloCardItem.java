@@ -7,10 +7,12 @@ public class ModelloCardItem {
 
     private String nome;
     private int logo;
+    private int id;
     private String offerta;
     private String prezzo;
 
-    public ModelloCardItem(int logo, String nome, String offerta, String prezzo){
+    public ModelloCardItem(int id, int logo, String nome, String offerta, String prezzo) {
+        this.id = id;
         this.logo = logo;
         this.nome = nome;
         this.offerta = offerta;
@@ -47,5 +49,14 @@ public class ModelloCardItem {
 
     public void setPrezzo(String prezzo) {
         this.prezzo = prezzo;
+    }
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

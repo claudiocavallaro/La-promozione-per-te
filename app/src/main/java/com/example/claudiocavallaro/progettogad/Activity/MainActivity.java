@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
     private void setInterface() {
         //ORDINAMENTO
         ArrayList<Gestore> listaGestori = ListaGestori.getListaGestori();
-        List<Promozione> appoggio = new ArrayList<Promozione>();
+        List<Promozione> appoggio = ListaGestori.getListaPromozioni();
         for (Gestore gestore : listaGestori) {
             List<Promozione> listaPromo = gestore.getListaPromo();
             for (Promozione p : listaPromo) {
@@ -87,9 +87,13 @@ public class MainActivity extends AppCompatActivity {
                 return 1;
             }
         });
-        for (Promozione p : appoggio) {
+
+        for (int i = 0; i < appoggio.size(); i++) {
+            Promozione p = appoggio.get(i);
+            p.setId(i);
             String costo = String.valueOf((int) p.getCosto());
-            models.add(new ModelloCardItem(p.getGestore().getLogo(), p.getNome(), p.getOfferta(), costo + " €"));
+            models.add(new ModelloCardItem(p.getId(), p.getGestore().getLogo(), p.getNome(), p.getOfferta(), costo + " €"));
+            //System.out.println(p.getId());
         }
 
         //INTERFACCIA
@@ -103,9 +107,8 @@ public class MainActivity extends AppCompatActivity {
             public void itemClicked(View view, int position) {
                 //Toast.makeText(getApplicationContext(), "ho cliccato " + models.get(position).getNome(), Toast.LENGTH_LONG).show();
                 Intent i = new Intent(MainActivity.this, CardActivity.class);
-                i.putExtra("promo", models.get(position).getNome());
+                i.putExtra("promo", models.get(position).getId());
                 startActivity(i);
-
             }
         });
         mRecycler.setAdapter(listAdapter);

@@ -27,7 +27,7 @@ import java.util.Iterator;
 
 public class RestCall extends AsyncTask<Void, Void, Void> {
 
-    private static String url = "http://192.168.2.8:8182/gad";
+    private static String url = "http://192.168.1.3:8182/gad";
     private ListaGestori listaGestori = new ListaGestori();
 
     @Override

@@ -55,8 +55,15 @@ public class CercaActivity extends AppCompatActivity {
 
 
                 //CONTROLLI SE I CAMPI SONO VUOTI O MENO
-                if (editText.getText().toString().equals("") || editInternet.getText().equals("") || editMinuti.getText().equals("") || editSms.getText().equals("")) {
-                    Toast.makeText(getApplicationContext(), "Uno o più campi sono vuoti\nImpossibile proseguire", Toast.LENGTH_LONG).show();
+                if (editText.getText().toString().equals("")) {
+                    System.out.println("vuoti");
+                    Toast.makeText(getApplicationContext(), "Campo costo vuoto\nImpossibile proseguire", Toast.LENGTH_LONG).show();
+                } else if (editInternet.getText().toString().equals("")) {
+                    Toast.makeText(getApplicationContext(), "Campo internet vuoto\nImpossibile proseguire", Toast.LENGTH_LONG).show();
+                } else if (editSms.getText().toString().equals("")) {
+                    Toast.makeText(getApplicationContext(), "Campo sms vuoto\nImpossibile proseguire", Toast.LENGTH_LONG).show();
+                } else if (editMinuti.getText().toString().equals("")) {
+                    Toast.makeText(getApplicationContext(), "Campo minuti vuoto\nImpossibile proseguire", Toast.LENGTH_LONG).show();
                 } else {
                     int costo = new Integer(editText.getText().toString());
                     for (Promozione p : ListaGestori.getListaPromozioni()) {

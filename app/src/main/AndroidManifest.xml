@@ -6,7 +6,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/trasp"
         android:label="La promozione per te"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
@@ -36,6 +36,16 @@
             android:name=".Activity.CardActivity"
             android:parentActivityName=".Activity.MainActivity"
             android:label="Specifiche promozione"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Activity.MainActivity" />
+        </activity>
+
+        <activity
+            android:name=".Activity.CercaActivity"
+            android:parentActivityName=".Activity.MainActivity"
+            android:label="Cerca ..."
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

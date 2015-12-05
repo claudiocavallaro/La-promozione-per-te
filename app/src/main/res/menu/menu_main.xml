@@ -2,6 +2,9 @@
     xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
 
     <item
+        android:id="@+id/action_cerca"
+        android:title="Cerca" />
+    <item
         android:id="@+id/info"
         android:title="Info" />
 </menu>

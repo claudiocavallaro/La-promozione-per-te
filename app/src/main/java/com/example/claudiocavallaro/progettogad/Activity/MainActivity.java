@@ -128,6 +128,10 @@ public class MainActivity extends AppCompatActivity {
             Intent i = new Intent(MainActivity.this, InfoActivity.class);
             startActivity(i);
         }
+        if (id == R.id.action_cerca) {
+            Intent i = new Intent(MainActivity.this, CercaActivity.class);
+            startActivity(i);
+        }
         return super.onOptionsItemSelected(item);
     }
 }

@@ -1,7 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_marginTop="9dp"
+    android:layout_marginRight="9dp"
+    android:layout_marginLeft="9dp">
 
-</LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        android:id="@+id/textCerca"
+        android:text="Cerca la promozione che più si avvicina alle tue esigenze" />
+
+    <EditText
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText"
+        android:layout_below="@+id/textCerca"
+        android:layout_marginTop="15dp"
+        android:hint="Costo"
+        android:inputType="number"
+        android:layout_gravity="center_horizontal" />
+
+    <EditText
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/editMinuti"
+        android:inputType="number"
+        android:layout_toRightOf="@+id/editText"
+        android:layout_below="@id/textCerca"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="25dp"
+        android:hint="Minuti verso tutti" />
+
+    <EditText
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:id="@+id/editSMS"
+        android:layout_below="@+id/editText"
+        android:layout_marginTop="2dp"
+        android:hint="SMS verso tutti" />
+
+    <EditText
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/editInternet"
+        android:inputType="number"
+        android:layout_below="@+id/editMinuti"
+        android:layout_toRightOf="@+id/editSMS"
+        android:layout_marginLeft="25dp"
+        android:hint="Internet in 4g" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editSMS"
+        android:layout_marginTop="10dp"
+        android:id="@+id/buttoCerca"
+        android:text="CERCA" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_below="@+id/buttoCerca"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+</RelativeLayout>

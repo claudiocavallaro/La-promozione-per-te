@@ -60,7 +60,7 @@ public class CardActivity extends AppCompatActivity {
                         link = result[1];
                         info = result[0];
                     } else {
-                        info = link;
+                        info = "";
                     }
 
                     System.out.println(info);

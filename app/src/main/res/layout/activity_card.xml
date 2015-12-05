@@ -27,4 +27,24 @@
         android:layout_marginTop="10dp"
         android:text="PROVA TITOLO"
         android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textOffertaBig"
+        android:layout_below="@+id/textNomeOfferta"
+        android:textSize="16dp"
+        android:text="PROVA OFFERTA"
+        android:layout_marginTop="15dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textCosto"
+        android:layout_below="@+id/textOffertaBig"
+        android:layout_marginTop="2dp"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:text="10€ / 28 giorni"
+        android:textColor="@android:color/holo_red_light" />
 </LinearLayout>

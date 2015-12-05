@@ -31,4 +31,16 @@ public class Caratteristiche {
     public String toString() {
         return nomeCaratteristica + " " + quantita;
     }
+
+    public String getCar() {
+        if (this.getNomeCaratteristica().equals("Internet in 4G") || this.getNomeCaratteristica().equals("Internet in 3G")) {
+            return " - " + this.getQuantita() + " GB " + this.getNomeCaratteristica() + "\n\n";
+        } else if (this.getNomeCaratteristica().equals("Minuti illimitati verso un numero Vodafone")) {
+            return " - " + this.getNomeCaratteristica() + "\n\n";
+        } else if (this.getQuantita().equals("Illimitati") && !(this.getNomeCaratteristica().equals("Minuti illimitati verso un numero Vodafone"))) {
+            return " - " + this.getNomeCaratteristica() + " " + this.getQuantita() + "\n\n";
+        } else {
+            return " - " + this.getQuantita() + " " + this.getNomeCaratteristica() + "\n\n";
+        }
+    }
 }

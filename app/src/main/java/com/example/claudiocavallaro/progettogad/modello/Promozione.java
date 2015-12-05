@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class Promozione implements Serializable {
 
     private String nome;
-    private String tipoPromozione;
+
     private double rapportoQP;
     private int costo;
     private String durata;
@@ -49,14 +49,6 @@ public class Promozione implements Serializable {
 
     public void setRapportoQP(double rapportoQP) {
         this.rapportoQP = rapportoQP;
-    }
-
-    public String getTipoPromozione() {
-        return tipoPromozione;
-    }
-
-    public void setTipoPromozione(String tipoPromozione) {
-        this.tipoPromozione = tipoPromozione;
     }
 
     public void addCaratteristica(Caratteristiche caratteristica) {

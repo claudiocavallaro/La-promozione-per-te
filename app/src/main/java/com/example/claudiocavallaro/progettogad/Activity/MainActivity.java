@@ -132,6 +132,10 @@ public class MainActivity extends AppCompatActivity {
             Intent i = new Intent(MainActivity.this, CercaActivity.class);
             startActivity(i);
         }
+        if (id == R.id.action_cercaGestore) {
+            Intent i = new Intent(MainActivity.this, GestoreActivity.class);
+            startActivity(i);
+        }
         return super.onOptionsItemSelected(item);
     }
 }

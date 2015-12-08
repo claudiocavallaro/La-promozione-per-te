@@ -16,7 +16,7 @@ import java.util.ArrayList;
  * Created by claudiocavallaro on 22/10/15.
  */
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
-//asdasds
+
 
     private ArrayList<ModelloCardItem> models;
     private Context context;

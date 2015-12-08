@@ -16,7 +16,7 @@
 
     <EditText
         android:layout_width="160dp"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:id="@+id/editText"
         android:layout_below="@+id/textCerca"
         android:layout_marginTop="15dp"
@@ -26,7 +26,7 @@
 
     <EditText
         android:layout_width="160dp"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:id="@+id/editMinuti"
         android:inputType="number"
         android:layout_toRightOf="@+id/editText"
@@ -37,7 +37,7 @@
 
     <EditText
         android:layout_width="160dp"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:inputType="number"
         android:id="@+id/editSMS"
         android:layout_below="@+id/editText"
@@ -46,7 +46,7 @@
 
     <EditText
         android:layout_width="160dp"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:id="@+id/editInternet"
         android:inputType="number"
         android:layout_below="@+id/editMinuti"

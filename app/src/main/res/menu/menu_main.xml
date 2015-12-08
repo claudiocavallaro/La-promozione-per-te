@@ -4,6 +4,11 @@
     <item
         android:id="@+id/action_cerca"
         android:title="Cerca" />
+
+    <item
+        android:id="@+id/action_cercaGestore"
+        android:title="Cerca per gestore" />
+
     <item
         android:id="@+id/info"
         android:title="Info" />

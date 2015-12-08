@@ -52,6 +52,16 @@
                 android:value=".Activity.MainActivity" />
         </activity>
 
+        <activity
+            android:name=".Activity.GestoreActivity"
+            android:parentActivityName=".Activity.MainActivity"
+            android:label="Cerca ..."
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Activity.MainActivity" />
+        </activity>
+
 
     </application>
 

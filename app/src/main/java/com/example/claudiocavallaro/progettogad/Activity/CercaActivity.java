@@ -111,6 +111,10 @@ public class CercaActivity extends AppCompatActivity {
                         }
                     }
 
+                    if (appoggio.isEmpty()) {
+                        Toast.makeText(getApplicationContext(), "Nessuna promozione trovata con le caratteristiche richieste !\nRiprovare", Toast.LENGTH_SHORT).show();
+                    }
+
                     for (Promozione p : appoggio) {
                         System.out.println("size " + appoggio.size());
                         String costoP = String.valueOf((int) p.getCosto());

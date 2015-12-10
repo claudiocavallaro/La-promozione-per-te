@@ -63,6 +63,15 @@
         </activity>
 
 
+        <activity
+            android:name=".Activity.ResultActivity"
+            android:parentActivityName=".Activity.GestoreActivity"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Activity.GestoreActivity" />
+        </activity>
+
     </application>
 
 </manifest>

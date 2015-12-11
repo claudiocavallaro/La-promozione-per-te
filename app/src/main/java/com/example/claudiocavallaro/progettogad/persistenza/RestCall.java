@@ -45,11 +45,9 @@ public class RestCall extends AsyncTask<Object, Void, Object> {
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        if (ListaGestori.getListaGestori().size() > 0) {
-            ListaGestori.getListaGestori().clear();
-        }
         progressDialog = new ProgressDialog(context);
         progressDialog.setMessage("Caricamento");
+        progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
     }
 

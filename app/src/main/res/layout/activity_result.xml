@@ -4,10 +4,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <com.example.claudiocavallaro.progettogad.modelliViste.SlidingTabLayout
+        android:id="@+id/tabs"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/cacca"
-        android:text="PROVA" />
+        android:background="@color/colorPrimary">
+
+    </com.example.claudiocavallaro.progettogad.modelliViste.SlidingTabLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+
+    </android.support.v4.view.ViewPager>
 
 </LinearLayout>

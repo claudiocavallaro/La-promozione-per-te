@@ -4,19 +4,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.Toast;
 
-import com.example.claudiocavallaro.progettogad.ListAdapter;
-import com.example.claudiocavallaro.progettogad.ListAdapterGestore;
+import com.example.claudiocavallaro.progettogad.modelliViste.ListAdapterGestore;
 import com.example.claudiocavallaro.progettogad.R;
 import com.example.claudiocavallaro.progettogad.modello.Gestore;
 import com.example.claudiocavallaro.progettogad.modello.ListaGestori;
-import com.example.claudiocavallaro.progettogad.modello.ModelloCardGestore;
-import com.example.claudiocavallaro.progettogad.modello.ModelloCardItem;
+import com.example.claudiocavallaro.progettogad.modelliViste.ModelloCardGestore;
 import com.example.claudiocavallaro.progettogad.modello.Promozione;
 
 import java.util.ArrayList;
@@ -37,11 +32,6 @@ public class GestoreActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gestore);
-
-        /*ImageView tim = (ImageView) findViewById(R.id.imageViewTim);
-        ImageView voda = (ImageView) findViewById(R.id.imageVoda);
-        ImageView tre = (ImageView) findViewById(R.id.imageTre);
-        ImageView wind = (ImageView) findViewById(R.id.imageWind);*/
 
         for (Gestore g : ListaGestori.getListaGestori()) {
             models.add(new ModelloCardGestore(g.getNomeGestore(), g.getLogo()));

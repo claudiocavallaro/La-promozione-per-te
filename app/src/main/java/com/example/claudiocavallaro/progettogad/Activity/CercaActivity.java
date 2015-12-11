@@ -12,11 +12,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.claudiocavallaro.progettogad.ListAdapter;
+import com.example.claudiocavallaro.progettogad.modelliViste.ListAdapter;
 import com.example.claudiocavallaro.progettogad.R;
 import com.example.claudiocavallaro.progettogad.modello.Caratteristiche;
 import com.example.claudiocavallaro.progettogad.modello.ListaGestori;
-import com.example.claudiocavallaro.progettogad.modello.ModelloCardItem;
+import com.example.claudiocavallaro.progettogad.modelliViste.ModelloCardItem;
 import com.example.claudiocavallaro.progettogad.modello.Promozione;
 
 import java.util.ArrayList;
@@ -104,7 +104,7 @@ public class CercaActivity extends AppCompatActivity {
                                     internet = new Double(c.getQuantita().trim());
                                 }
                             }
-                            if ((mioInternet <= internet) && (mioMinuti <= minuti)) {
+                            if ((mioInternet <= internet) && (mioMinuti <= minuti) && (mioSms <= sms)) {
                                 appoggio.add(p);
                             }
 

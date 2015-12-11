@@ -1,4 +1,4 @@
-package com.example.claudiocavallaro.progettogad.modello;
+package com.example.claudiocavallaro.progettogad.modelliViste;
 
 /**
  * Created by claudiocavallaro on 22/10/15.

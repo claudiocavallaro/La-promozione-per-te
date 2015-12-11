@@ -15,10 +15,13 @@
             android:label="La promozione per te"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:theme="@style/AppTheme.NoActionBar" ></activity>
+
+        <activity
+            android:name=".Activity.SplashScrennActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -72,6 +75,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Activity.GestoreActivity" />
         </activity>
+
 
     </application>
 

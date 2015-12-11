@@ -1,12 +1,14 @@
 package com.example.claudiocavallaro.progettogad.persistenza;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
-import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.example.claudiocavallaro.progettogad.Activity.MainActivity;
+import com.example.claudiocavallaro.progettogad.Activity.SplashScrennActivity;
 import com.example.claudiocavallaro.progettogad.R;
 import com.example.claudiocavallaro.progettogad.modello.Caratteristiche;
 import com.example.claudiocavallaro.progettogad.modello.Gestore;
@@ -34,27 +36,30 @@ public class RestCall extends AsyncTask<Object, Void, Object> {
     private static String url = "http://95.247.8.9:8182/gad";
 
     private ProgressDialog progressDialog;
+    private ProgressBar spinner;
     private static Context context;
-    private MainActivity mActivity;
+    private SplashScrennActivity mActivity;
 
 
-    public RestCall(MainActivity mActivity) {
+    public RestCall(SplashScrennActivity mActivity) {
         this.mActivity = mActivity;
     }
 
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        progressDialog = new ProgressDialog(context);
+        spinner = (ProgressBar) mActivity.findViewById(R.id.progressBar);
+        spinner.setVisibility(View.VISIBLE);
+        /*progressDialog = new ProgressDialog(context);
         progressDialog.setMessage("Caricamento");
         progressDialog.setCanceledOnTouchOutside(false);
-        progressDialog.show();
+        progressDialog.show();*/
     }
 
     @Override
     protected void onProgressUpdate(Void... values) {
         super.onProgressUpdate(values);
-        progressDialog.setMessage("Caricamento");
+        //progressDialog.setMessage("Caricamento");
     }
 
     @Override
@@ -136,8 +141,10 @@ public class RestCall extends AsyncTask<Object, Void, Object> {
     @Override
     protected void onPostExecute(Object o) {
         super.onPostExecute(o);
-        progressDialog.dismiss();
-        mActivity.setInterface();
+        //progressDialog.dismiss();
+        spinner.setVisibility(View.INVISIBLE);
+        Intent i = new Intent(mActivity.getApplicationContext(), MainActivity.class);
+        context.startActivity(i);
     }
 
     public Context getContext() {

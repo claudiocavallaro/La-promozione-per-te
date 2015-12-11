@@ -1,6 +1,7 @@
 package com.example.claudiocavallaro.progettogad.Activity;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -43,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        RestCall call = new RestCall();
+        AsyncTask call = new RestCall(this);
         call.execute();
 
         /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -55,17 +56,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });*/
 
-        android.os.Handler handler = new android.os.Handler();
+        /*android.os.Handler handler = new android.os.Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 setInterface();
             }
-        }, 2000);
+        }, 2000);*/
+
 
     }
 
-    private void setInterface() {
+    public void setInterface() {
         //ORDINAMENTO
         ArrayList<Gestore> listaGestori = ListaGestori.getListaGestori();
         List<Promozione> appoggio = ListaGestori.getListaPromozioni();

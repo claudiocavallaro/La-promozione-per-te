@@ -1,8 +1,12 @@
 package com.example.claudiocavallaro.progettogad.persistenza;
 
+import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.example.claudiocavallaro.progettogad.Activity.MainActivity;
 import com.example.claudiocavallaro.progettogad.R;
 import com.example.claudiocavallaro.progettogad.modello.Caratteristiche;
 import com.example.claudiocavallaro.progettogad.modello.Gestore;
@@ -25,13 +29,35 @@ import java.util.Iterator;
  * Created by claudiocavallaro on 27/11/15.
  */
 
-public class RestCall extends AsyncTask<Void, Void, Void> {
+public class RestCall extends AsyncTask<Object, Void, Object> {
 
-    private static String url = "http://192.168.2.8:8182/gad";
+    private static String url = "http://95.247.8.9:8182/gad";
     private ListaGestori listaGestori = new ListaGestori();
+    private ProgressDialog progressDialog;
+    private MainActivity mActivity;
+
+
+    public RestCall(MainActivity mActivity) {
+        this.mActivity = mActivity;
+    }
 
     @Override
-    protected Void doInBackground(Void... params) {
+    protected void onPreExecute() {
+        super.onPreExecute();
+        progressDialog = new ProgressDialog(mActivity.getBaseContext());
+        progressDialog.setMessage("Caricamento");
+        progressDialog.show();
+        progressDialog.setCanceledOnTouchOutside(true);
+    }
+
+    @Override
+    protected void onProgressUpdate(Void... values) {
+        super.onProgressUpdate(values);
+        progressDialog.setMessage("Caricamento");
+    }
+
+    @Override
+    protected Object doInBackground(Object... params) {
         try {
             HttpClient request = new DefaultHttpClient();
             HttpGet get = new HttpGet(url);
@@ -104,5 +130,12 @@ public class RestCall extends AsyncTask<Void, Void, Void> {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    protected void onPostExecute(Object o) {
+        super.onPostExecute(o);
+        progressDialog.dismiss();
+        mActivity.setInterface();
     }
 }

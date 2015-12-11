@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         AsyncTask call = new RestCall(this);
+        RestCall.setContext(this);
         call.execute();
 
         /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -55,16 +56,6 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });*/
-
-        /*android.os.Handler handler = new android.os.Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                setInterface();
-            }
-        }, 2000);*/
-
-
     }
 
     public void setInterface() {

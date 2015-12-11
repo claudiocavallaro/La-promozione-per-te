@@ -32,8 +32,9 @@ import java.util.Iterator;
 public class RestCall extends AsyncTask<Object, Void, Object> {
 
     private static String url = "http://95.247.8.9:8182/gad";
-    private ListaGestori listaGestori = new ListaGestori();
+
     private ProgressDialog progressDialog;
+    private static Context context;
     private MainActivity mActivity;
 
 
@@ -44,10 +45,12 @@ public class RestCall extends AsyncTask<Object, Void, Object> {
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        progressDialog = new ProgressDialog(mActivity.getBaseContext());
+        if (ListaGestori.getListaGestori().size() > 0) {
+            ListaGestori.getListaGestori().clear();
+        }
+        progressDialog = new ProgressDialog(context);
         progressDialog.setMessage("Caricamento");
         progressDialog.show();
-        progressDialog.setCanceledOnTouchOutside(true);
     }
 
     @Override
@@ -137,5 +140,13 @@ public class RestCall extends AsyncTask<Object, Void, Object> {
         super.onPostExecute(o);
         progressDialog.dismiss();
         mActivity.setInterface();
+    }
+
+    public Context getContext() {
+        return context;
+    }
+
+    public static void setContext(Context context) {
+        RestCall.context = context;
     }
 }

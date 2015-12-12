@@ -76,6 +76,15 @@
                 android:value=".Activity.GestoreActivity" />
         </activity>
 
+        <activity
+            android:name=".Activity.SettingActivity"
+            android:parentActivityName=".Activity.CercaActivity"
+            android:label="Setting"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Activity.CercaActivity" />
+        </activity>
 
     </application>
 

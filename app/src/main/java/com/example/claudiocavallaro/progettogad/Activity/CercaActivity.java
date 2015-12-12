@@ -2,10 +2,15 @@ package com.example.claudiocavallaro.progettogad.Activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -15,12 +20,22 @@ import android.widget.Toast;
 import com.example.claudiocavallaro.progettogad.modelliViste.ListAdapter;
 import com.example.claudiocavallaro.progettogad.R;
 import com.example.claudiocavallaro.progettogad.modello.Caratteristiche;
+import com.example.claudiocavallaro.progettogad.modello.Configurazione;
 import com.example.claudiocavallaro.progettogad.modello.ListaGestori;
 import com.example.claudiocavallaro.progettogad.modelliViste.ModelloCardItem;
 import com.example.claudiocavallaro.progettogad.modello.Promozione;
 
+import org.w3c.dom.Document;
+
+import java.io.File;
+import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathFactory;
 
 /**
  * Created by claudiocavallaro on 04/12/15.
@@ -33,16 +48,29 @@ public class CercaActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutManager;
     private ListAdapter listAdapter;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cerca);
+        int margine = 0;
+
+        if (Configurazione.getCosto() == null) {
+            Configurazione.setCosto("2");
+            margine = new Integer(Configurazione.getCosto());
+            System.out.println(Configurazione.getCosto());
+        } else {
+            margine = new Integer(Configurazione.getCosto());
+            System.out.println(Configurazione.getCosto());
+        }
+
 
         final EditText editText = (EditText) findViewById(R.id.editText);
         final EditText editMinuti = (EditText) findViewById(R.id.editMinuti);
         final EditText editSms = (EditText) findViewById(R.id.editSMS);
         final EditText editInternet = (EditText) findViewById(R.id.editInternet);
         Button cerca = (Button) findViewById(R.id.buttoCerca);
+        final int finalMargine = margine;
         cerca.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,7 +95,7 @@ public class CercaActivity extends AppCompatActivity {
                 } else {
                     int costo = new Integer(editText.getText().toString());
                     for (Promozione p : ListaGestori.getListaPromozioni()) {
-                        if (costo == p.getCosto() || costo + 2 == p.getCosto() || costo > p.getCosto()) {
+                        if (costo == p.getCosto() || costo + finalMargine == p.getCosto() || costo + finalMargine > p.getCosto()) {
                             List<Caratteristiche> lista = p.getListaCaratteristiche();
                             int mioMinuti = new Integer(editMinuti.getText().toString());
                             int mioSms = new Integer(editSms.getText().toString());
@@ -140,5 +168,23 @@ public class CercaActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_cerca, menu);
+        return true;
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.setting) {
+            Intent i = new Intent(CercaActivity.this, SettingActivity.class);
+            startActivity(i);
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

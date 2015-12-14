@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.example.claudiocavallaro.progettogad.Activity.MainActivity;
 import com.example.claudiocavallaro.progettogad.Activity.SplashScrennActivity;
@@ -88,7 +89,7 @@ public class RestCall extends AsyncTask<Object, Void, Object> {
                         g.setLogo(R.drawable.voda);
                     }
                     if (nome.equals("TIM")) {
-                        g.setLogo(R.drawable.tim);
+                        g.setLogo(R.drawable.tim3);
                     }
                     if (nome.equals("WIND")) {
                         g.setLogo(R.drawable.wind);

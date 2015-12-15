@@ -2,12 +2,15 @@ package com.example.claudiocavallaro.progettogad.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 import com.example.claudiocavallaro.progettogad.R;
 import com.example.claudiocavallaro.progettogad.modelliViste.SlidingTabLayout;
+import com.example.claudiocavallaro.progettogad.persistenza.RestCall;
+import com.example.claudiocavallaro.progettogad.persistenza.RestCallNews;
 import com.example.claudiocavallaro.progettogad.vista.ViewPagerAdapter;
 
 /**
@@ -15,7 +18,7 @@ import com.example.claudiocavallaro.progettogad.vista.ViewPagerAdapter;
  */
 public class ResultActivity extends AppCompatActivity {
 
-    private String nome = "";
+    private static String nome = "";
 
     private ViewPager pager;
     private ViewPagerAdapter adapter;
@@ -34,18 +37,19 @@ public class ResultActivity extends AppCompatActivity {
 
         this.setTitle(nome);
 
-        gestisciTabs();
+
+        RestCallNews call = new RestCallNews(this);
+        RestCallNews.setContext(this);
+        call.execute();
+
+
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getNome() {
+    public static String getNome() {
         return nome;
     }
 
-    private void gestisciTabs() {
+    public void gestisciTabs() {
         adapter = new ViewPagerAdapter(getSupportFragmentManager(), titles, numOfTabs);
 
         pager = (ViewPager) findViewById(R.id.pager);

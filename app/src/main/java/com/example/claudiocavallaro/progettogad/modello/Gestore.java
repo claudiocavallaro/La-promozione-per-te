@@ -9,6 +9,7 @@ public class Gestore {
     private String nomeGestore;
     private int logo;
     private ArrayList<Promozione> listaPromo = new ArrayList<Promozione>();
+    private ArrayList<News> listaNews = new ArrayList<News>();
 
     public Gestore(String nomeGestore) {
         setNomeGestore(nomeGestore);
@@ -44,11 +45,23 @@ public class Gestore {
         return null;
     }
 
+    public void addNews(News news){
+        this.getListaNews().add(news);
+    }
+
     public int getLogo() {
         return logo;
     }
 
     public void setLogo(int logo) {
         this.logo = logo;
+    }
+
+    public ArrayList<News> getListaNews() {
+        return listaNews;
+    }
+
+    public void setListaNews(ArrayList<News> listaNews) {
+        this.listaNews = listaNews;
     }
 }

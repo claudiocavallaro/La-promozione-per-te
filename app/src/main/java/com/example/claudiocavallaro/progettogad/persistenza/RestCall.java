@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.example.claudiocavallaro.progettogad.Activity.MainActivity;
 import com.example.claudiocavallaro.progettogad.Activity.SplashScrennActivity;
+
 import com.example.claudiocavallaro.progettogad.R;
 import com.example.claudiocavallaro.progettogad.modello.Caratteristiche;
 import com.example.claudiocavallaro.progettogad.modello.Gestore;
@@ -34,7 +35,7 @@ import java.util.Iterator;
 
 public class RestCall extends AsyncTask<Object, Void, Object> {
 
-    private static String url = "http://95.247.8.9:8182/gad";
+    private static String url = "http://192.168.2.8:8182/gad";
 
     private ProgressDialog progressDialog;
     private ProgressBar spinner;
@@ -89,7 +90,7 @@ public class RestCall extends AsyncTask<Object, Void, Object> {
                         g.setLogo(R.drawable.voda);
                     }
                     if (nome.equals("TIM")) {
-                        g.setLogo(R.drawable.tim3);
+                        g.setLogo(R.drawable.tim);
                     }
                     if (nome.equals("WIND")) {
                         g.setLogo(R.drawable.wind);

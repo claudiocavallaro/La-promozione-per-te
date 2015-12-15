@@ -29,4 +29,6 @@ dependencies {
     compile 'com.android.support:cardview-v7:23.1.0'
     compile files('/Users/claudiocavallaro/AndroidStudioProjects/ProgettoGad/commons-io-2.4.jar')
     compile files('/Users/claudiocavallaro/AndroidStudioProjects/ProgettoGad/commons-lang3-3.4.jar')
+    compile files('src/main/jsoup-1.8.3.jar')
+    compile files('src/main/htmlcleaner-2.15.jar')
 }

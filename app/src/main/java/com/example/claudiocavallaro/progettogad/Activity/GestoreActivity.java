@@ -14,6 +14,7 @@ import com.example.claudiocavallaro.progettogad.modello.Gestore;
 import com.example.claudiocavallaro.progettogad.modello.ListaGestori;
 import com.example.claudiocavallaro.progettogad.modelliViste.ModelloCardGestore;
 import com.example.claudiocavallaro.progettogad.modello.Promozione;
+import com.example.claudiocavallaro.progettogad.persistenza.RestCallNews;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -49,6 +49,7 @@
             android:name=".Activity.CercaActivity"
             android:parentActivityName=".Activity.MainActivity"
             android:label="Cerca ..."
+            android:launchMode="singleTop"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -79,6 +80,7 @@
             android:name=".Activity.SettingActivity"
             android:parentActivityName=".Activity.CercaActivity"
             android:label="Setting"
+            android:launchMode="singleTop"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

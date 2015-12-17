@@ -58,6 +58,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/editSMS"
+        android:background="@drawable/button_draw"
+        android:shadowColor="@color/colorPrimaryDark"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="0"
+        android:textColor="#FFFFFF"
+        android:textSize="16dp"
         android:layout_marginTop="10dp"
         android:id="@+id/buttoCerca"
         android:text="CERCA" />
@@ -65,7 +72,7 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_below="@+id/buttoCerca"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:layout_width="match_parent"

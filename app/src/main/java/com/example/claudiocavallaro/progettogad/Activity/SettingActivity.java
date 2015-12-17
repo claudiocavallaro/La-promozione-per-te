@@ -40,6 +40,7 @@ public class SettingActivity extends AppCompatActivity {
 
                         Intent i = new Intent(SettingActivity.this, CercaActivity.class);
                         startActivity(i);
+                        finish();
                     } catch (Exception e) {
                         e.printStackTrace();
                     }

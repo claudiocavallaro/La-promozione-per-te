@@ -24,9 +24,7 @@ import java.util.List;
 
 import javax.xml.transform.Result;
 
-/**
- * Created by claudiocavallaro on 11/12/15.
- */
+
 public class Tab2 extends android.support.v4.app.Fragment {
 
     private ResultActivity resultActivity;

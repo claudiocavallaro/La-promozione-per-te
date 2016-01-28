@@ -47,6 +47,7 @@ public class CercaActivity extends AppCompatActivity {
     private RecyclerView mRecycler;
     private RecyclerView.LayoutManager layoutManager;
     private ListAdapter listAdapter;
+    private int iterazioni = 0;
 
 
     @Override
@@ -74,13 +75,14 @@ public class CercaActivity extends AppCompatActivity {
         cerca.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                appoggio.clear();
+                models.clear();
                 //SERVE A CHIUDERE LA TASTIERA ALLA PRESSIONE DEL TASTO CERCA
                 if (v != null) {
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
                 }
                 //-----------------------------------------------------------
-
 
                 //CONTROLLI SE I CAMPI SONO VUOTI O MENO
                 if (editText.getText().toString().equals("")) {
@@ -105,7 +107,7 @@ public class CercaActivity extends AppCompatActivity {
                             double internet = 0;
                             for (Caratteristiche c : lista) {
                                 if (c.getNomeCaratteristica().equals("Minuti verso tutti")) {
-                                    if (c.getQuantita().equals("Illimitati")) {
+                                    if (c.getQuantita().equals("Illimitati")|| c.getQuantita().equals("illimitati")) {
                                         minuti = 60000;
                                     } else {
                                         try {
@@ -113,11 +115,11 @@ public class CercaActivity extends AppCompatActivity {
                                         } catch (Exception e) {
                                             minuti = new Integer(c.getQuantita().substring(0, c.getQuantita().length() - 1));
                                         }
-                                        System.out.println(minuti + " mio minuti " + mioMinuti);
+                                        System.out.println(minuti + " mio minuti " + mioMinuti + " " + c.getQuantita());
                                     }
                                 }
                                 if (c.getNomeCaratteristica().equals("SMS verso tutti")) {
-                                    if (c.getQuantita().equals("Illimitati")) {
+                                    if (c.getQuantita().equals("Illimitati") || c.getQuantita().equals("illimitati")) {
                                         sms = 60000;
                                     } else {
                                         try {

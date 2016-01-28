@@ -10,6 +10,7 @@
         android:id="@+id/textGestoreInfo"
         android:layout_marginTop="9dp"
         android:layout_marginLeft="9dp"
+        android:textColor="@color/colorPrimary"
         android:layout_marginRight="9dp"
         android:text="Cerca tutte le promozioni del tuo gestore" />
 

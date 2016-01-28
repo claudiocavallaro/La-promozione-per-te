@@ -10,6 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="9dp"
         android:layout_marginRight="9dp"
+        android:textColor="@color/colorPrimary"
         android:layout_marginTop="9dp"
         android:text="Inserisci il margine massimo dal prezzo scelto, per la visualizzazione delle promozioni" />
 
@@ -21,6 +22,7 @@
         android:layout_marginLeft="9dp"
         android:layout_marginRight="9dp"
         android:layout_marginTop="9dp"
+        android:textColor="@color/colorPrimary"
         android:hint="Margine"
         android:inputType="number" />
 

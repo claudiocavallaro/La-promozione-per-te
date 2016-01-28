@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -31,21 +31,30 @@
         android:textStyle="bold"
         android:layout_gravity="center_horizontal" />
 
-    <TextView
+<!--    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textOffertaBig"
         android:layout_below="@+id/textNomeOfferta"
         android:textSize="16dp"
         android:text="PROVA OFFERTA"
-        android:layout_marginTop="15dp" />
+        android:textColor="@color/colorPrimary"
+        android:layout_marginTop="10dp" /> -->
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textOffertaBig"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/textNomeOfferta"
+        android:layout_marginTop="5dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textCosto"
         android:layout_below="@+id/textOffertaBig"
-        android:layout_marginTop="2dp"
+        android:layout_marginTop="5dp"
         android:textSize="16dp"
         android:textStyle="bold"
         android:text="10€ / 28 giorni"
@@ -57,8 +66,9 @@
         android:id="@+id/textInformazioni"
         android:textSize="16dp"
         android:text="PROVA"
+        android:textColor="@color/colorPrimary"
         android:layout_below="@+id/textCosto"
-        android:layout_marginTop="15dp" />
+        android:layout_marginTop="5dp" />
 
     <Button
         android:layout_width="wrap_content"
@@ -74,4 +84,24 @@
         android:text="VAI"
         android:textColor="#FFFFFF"
         android:textSize="16dp" />
-</LinearLayout>
+
+<!--    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:id="@+id/addButton"
+        android:src="@drawable/add"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="5dp" />
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:id="@+id/removeButton"
+        android:src="@drawable/remove"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="5dp"
+        android:layout_toRightOf="@id/addButton"
+        android:layout_marginLeft="25dp"/>-->
+
+
+</RelativeLayout>

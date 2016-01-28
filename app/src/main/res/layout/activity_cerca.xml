@@ -11,6 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="16dp"
+        android:textColor="@color/colorPrimary"
         android:id="@+id/textCerca"
         android:text="Cerca la promozione che più si avvicina alle tue esigenze" />
 
@@ -21,6 +22,7 @@
         android:layout_below="@+id/textCerca"
         android:layout_marginTop="15dp"
         android:hint="Costo"
+        android:textColor="@color/colorPrimary"
         android:inputType="number"
         android:layout_gravity="center_horizontal" />
 
@@ -30,6 +32,7 @@
         android:id="@+id/editMinuti"
         android:inputType="number"
         android:layout_toRightOf="@+id/editText"
+        android:textColor="@color/colorPrimary"
         android:layout_below="@id/textCerca"
         android:layout_marginTop="15dp"
         android:layout_marginLeft="25dp"
@@ -41,6 +44,7 @@
         android:inputType="number"
         android:id="@+id/editSMS"
         android:layout_below="@+id/editText"
+        android:textColor="@color/colorPrimary"
         android:layout_marginTop="2dp"
         android:hint="SMS verso tutti" />
 
@@ -51,6 +55,7 @@
         android:inputType="number"
         android:layout_below="@+id/editMinuti"
         android:layout_toRightOf="@+id/editSMS"
+        android:textColor="@color/colorPrimary"
         android:layout_marginLeft="25dp"
         android:hint="Internet in 4g" />
 

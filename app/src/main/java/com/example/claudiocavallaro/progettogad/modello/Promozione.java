@@ -17,6 +17,7 @@ public class Promozione implements Serializable {
     private String durata;
     private String info;
     private Gestore gestore;
+    private boolean fav;
     private ArrayList<Caratteristiche> listaCaratteristiche = new ArrayList<Caratteristiche>();
 
     public ArrayList<Caratteristiche> getListaCaratteristiche() {
@@ -82,6 +83,8 @@ public class Promozione implements Serializable {
                 singola = c.getNomeCaratteristica() + " ";
             } else if (c.getQuantita().equals("Illimitati") && !(c.getNomeCaratteristica().equals("Minuti illimitati verso un numero Vodafone"))) {
                 singola = c.getNomeCaratteristica() + " " + c.getQuantita() + " ";
+            } else if (c.getQuantita().equals("illimitati")){
+                singola = c.getNomeCaratteristica() + " " + c.getQuantita() + " ";
             } else {
                 singola = c.getQuantita() + " " + c.getNomeCaratteristica() + " ";
             }
@@ -113,5 +116,13 @@ public class Promozione implements Serializable {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public boolean isFav() {
+        return fav;
+    }
+
+    public void setFav(boolean fav) {
+        this.fav = fav;
     }
 }

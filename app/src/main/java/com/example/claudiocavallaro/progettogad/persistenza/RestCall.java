@@ -35,7 +35,7 @@ import java.util.Iterator;
 
 public class RestCall extends AsyncTask<Object, Void, Object> {
 
-    private static String url = "http://95.251.155.109:8182/gad";
+    private static String url = "http://192.168.2.8:8182/gad";
 
     private ProgressDialog progressDialog;
     private ProgressBar spinner;
@@ -87,16 +87,16 @@ public class RestCall extends AsyncTask<Object, Void, Object> {
                     String nome = id.getJSONObject(0).getString("Gestore");
                     Gestore g = new Gestore(nome);
                     if (nome.equals("VODAFONE")) {
-                        g.setLogo(R.drawable.voda);
+                        g.setLogo(R.drawable.vodata);
                     }
                     if (nome.equals("TIM")) {
                         g.setLogo(R.drawable.tim);
                     }
                     if (nome.equals("WIND")) {
-                        g.setLogo(R.drawable.wind);
+                        g.setLogo(R.drawable.windta);
                     }
                     if (nome.equals("TRE")) {
-                        g.setLogo(R.drawable.tre);
+                        g.setLogo(R.drawable.treta);
                     }
                     JSONArray promo = id.getJSONArray(1);
                     for (int j = 0; j < promo.length(); j++) {

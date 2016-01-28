@@ -37,12 +37,8 @@
 
         <activity
             android:name=".Activity.CardActivity"
-            android:parentActivityName=".Activity.MainActivity"
-            android:label="Specifiche promozione"
+            android:label="Specifiche"
             android:screenOrientation="portrait">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Activity.MainActivity" />
         </activity>
 
         <activity
@@ -85,6 +81,16 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Activity.CercaActivity" />
+        </activity>
+
+        <activity
+            android:name=".Activity.FavActivity"
+            android:parentActivityName=".Activity.MainActivity"
+            android:label="Preferiti"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Activity.MainActivity" />
         </activity>
 
     </application>

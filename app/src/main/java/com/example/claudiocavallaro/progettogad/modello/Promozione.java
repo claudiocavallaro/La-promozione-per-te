@@ -14,10 +14,10 @@ public class Promozione implements Serializable {
     private int id;
     private double rapportoQP;
     private int costo;
+    private boolean fav;
     private String durata;
     private String info;
     private Gestore gestore;
-    private boolean fav;
     private ArrayList<Caratteristiche> listaCaratteristiche = new ArrayList<Caratteristiche>();
 
     public ArrayList<Caratteristiche> getListaCaratteristiche() {

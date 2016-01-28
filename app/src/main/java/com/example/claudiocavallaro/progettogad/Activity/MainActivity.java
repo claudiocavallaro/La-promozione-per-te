@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import com.example.claudiocavallaro.progettogad.modelliViste.ListAdapter;
 import com.example.claudiocavallaro.progettogad.R;
@@ -103,6 +104,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+        listAdapter.setLongClickListener(new ListAdapter.LongClickListener() {
+            @Override
+            public void itemClicked(View view, int position) {
+                Toast.makeText(getApplicationContext(), "ho cliccato a lungo " + models.get(position).getNome(), Toast.LENGTH_LONG).show();
+
+            }
+        });
         mRecycler.setAdapter(listAdapter);
 
     }
@@ -126,6 +134,10 @@ public class MainActivity extends AppCompatActivity {
         }
         if (id == R.id.action_cercaGestore) {
             Intent i = new Intent(MainActivity.this, GestoreActivity.class);
+            startActivity(i);
+        }
+        if (id == R.id.action_fav){
+            Intent i = new Intent(MainActivity.this, FavActivity.class);
             startActivity(i);
         }
         return super.onOptionsItemSelected(item);

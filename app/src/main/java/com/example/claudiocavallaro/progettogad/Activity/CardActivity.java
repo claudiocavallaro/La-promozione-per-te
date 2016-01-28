@@ -35,7 +35,8 @@ import java.util.List;
 public class CardActivity extends AppCompatActivity {
 
     private String link;
-    private Promozione p;
+    private Promozione promo;
+    private ArrayList<Promozione> lista = ListaGestori.getListaPromozioni();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,103 +45,86 @@ public class CardActivity extends AppCompatActivity {
 
         Intent i = getIntent();
         int id = i.getIntExtra("promo", 0);
-        for (Gestore gestore : ListaGestori.getListaGestori()) {
-            List<Promozione> lista = ListaGestori.getListaPromozioni();
-            for (int j = 0; j < lista.size() ; j++) {
-                p = lista.get(j);
-                if (p.getId() == id) {
-                    TextView tv = (TextView) findViewById(R.id.textGestore);
-                    tv.setText(p.getGestore().getNomeGestore());
-                    TextView tvNome = (TextView) findViewById(R.id.textNomeOfferta);
-                    tvNome.setText(p.getNome());
-                    TextView tvCosto = (TextView) findViewById(R.id.textCosto);
-                    String costo = String.valueOf((int) p.getCosto());
-                    tvCosto.setText(costo + " € / " + p.getDurata() + " giorni");
+        System.out.println(id);
 
-                    List<Caratteristiche> listaCar = p.getListaCaratteristiche();
+        System.out.println(ListaGestori.getListaPromozioni().size());
 
-                    ArrayList<ModelloCardInfo> models = new ArrayList<ModelloCardInfo>();
+        for (Promozione p : lista) {
+            if (p.getId() == id) {
+                promo = p;
+                TextView tv = (TextView) findViewById(R.id.textGestore);
+                tv.setText(p.getGestore().getNomeGestore());
+                TextView tvNome = (TextView) findViewById(R.id.textNomeOfferta);
+                tvNome.setText(p.getNome());
+                TextView tvCosto = (TextView) findViewById(R.id.textCosto);
+                String costo = String.valueOf((int) p.getCosto());
+                tvCosto.setText(costo + " € / " + p.getDurata() + " giorni");
+
+                List<Caratteristiche> listaCar = p.getListaCaratteristiche();
+
+                ArrayList<ModelloCardInfo> models = new ArrayList<ModelloCardInfo>();
 
 
-                    for (Caratteristiche c : listaCar) {
-                        if (c.getNomeCaratteristica().contains("Minuti")){
-                            if (c.getQuantita().equals("illimitati") || c.getQuantita().equals("Illimitati")){
-                                models.add(new ModelloCardInfo(c.getNomeCaratteristica() + " " + c.getQuantita() , R.drawable.chiamate));
-                            } else {
-                                models.add(new ModelloCardInfo(c.getQuantita() + " " + c.getNomeCaratteristica(), R.drawable.chiamate));
-                            }
+                for (Caratteristiche c : listaCar) {
+                    if (c.getNomeCaratteristica().contains("Minuti")) {
+                        if (c.getQuantita().equals("illimitati") || c.getQuantita().equals("Illimitati")) {
+                            models.add(new ModelloCardInfo(c.getNomeCaratteristica() + " " + c.getQuantita(), R.drawable.chiamate));
+                        } else {
+                            models.add(new ModelloCardInfo(c.getQuantita() + " " + c.getNomeCaratteristica(), R.drawable.chiamate));
                         }
-                        if (c.getNomeCaratteristica().contains("SMS")){
-                            if (c.getQuantita().equals("illimitati") || c.getQuantita().equals("Illimitati")){
-                                models.add(new ModelloCardInfo(c.getNomeCaratteristica() + " " + c.getQuantita() , R.drawable.mess));
-                            } else {
-                                models.add(new ModelloCardInfo(c.getQuantita() + " " + c.getNomeCaratteristica(), R.drawable.mess));
-                            }
-                        }
-                        if (c.getNomeCaratteristica().contains("Internet")){
-                            models.add(new ModelloCardInfo(c.getQuantita() + "GB " + c.getNomeCaratteristica(), R.drawable.www));
-                        }
-
                     }
-
-                    ListAdapterCard listAdapterCard = new ListAdapterCard(this, models);
-                    ListView listView = (ListView) findViewById(R.id.textOffertaBig);
-                    listView.setAdapter(listAdapterCard);
-
-
-                    TextView tvInformazioni = (TextView) findViewById(R.id.textInformazioni);
-                    String info = "";
-                    link = p.getInfo();
-                    if (link.contains(" - ")) {
-                        String[] result = link.split(" - ");
-                        link = result[1];
-                        info = result[0];
-                    } else {
-                        info = "";
+                    if (c.getNomeCaratteristica().contains("SMS")) {
+                        if (c.getQuantita().equals("illimitati") || c.getQuantita().equals("Illimitati")) {
+                            models.add(new ModelloCardInfo(c.getNomeCaratteristica() + " " + c.getQuantita(), R.drawable.mess));
+                        } else {
+                            models.add(new ModelloCardInfo(c.getQuantita() + " " + c.getNomeCaratteristica(), R.drawable.mess));
+                        }
                     }
-
-                    System.out.println(info);
-
-                    if (info.equals(" ")){
-                        tvInformazioni.setText("\nPer maggiori informazioni visita il sito web cliccando sul bottone sottostante");
-                    } else {
-                        tvInformazioni.setText(info + "\n\nPer maggiori informazioni visita il sito web cliccando sul bottone sottostante");
+                    if (c.getNomeCaratteristica().contains("Internet")) {
+                        models.add(new ModelloCardInfo(c.getQuantita() + "GB " + c.getNomeCaratteristica(), R.drawable.www));
                     }
-
-
-                    System.out.println(link);
-                    Button bottone = (Button) findViewById(R.id.buttonLink);
-                    bottone.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent i = new Intent(Intent.ACTION_VIEW);
-                            i.setData(Uri.parse(link));
-                            startActivity(i);
-                        }
-                    });
-
-                    /*ImageView add = (ImageView) findViewById(R.id.addButton);
-                    add.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            p.setFav(true);
-                            Toast.makeText(getApplicationContext(), "Promozione aggiunta alle preferite", Toast.LENGTH_LONG).show();
-                        }
-                    });
-
-                    ImageView remove = (ImageView) findViewById(R.id.removeButton);
-                    add.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            p.setFav(false);
-                            Toast.makeText(getApplicationContext(), "Promozione rimossa dalle preferite", Toast.LENGTH_LONG).show();
-                        }
-                    });*/
 
                 }
+
+                ListAdapterCard listAdapterCard = new ListAdapterCard(this, models);
+                ListView listView = (ListView) findViewById(R.id.textOffertaBig);
+                listView.setAdapter(listAdapterCard);
+
+
+                TextView tvInformazioni = (TextView) findViewById(R.id.textInformazioni);
+                String info = "";
+                link = p.getInfo();
+                if (link.contains(" - ")) {
+                    String[] result = link.split(" - ");
+                    link = result[1];
+                    info = result[0];
+                } else {
+                    info = "";
+                }
+
+                System.out.println(info);
+
+                if (info.equals(" ")) {
+                    tvInformazioni.setText("\nPer maggiori informazioni visita il sito web cliccando sul bottone sottostante");
+                } else {
+                    tvInformazioni.setText(info + "\n\nPer maggiori informazioni visita il sito web cliccando sul bottone sottostante");
+                }
+
+
+                System.out.println(link);
+                Button bottone = (Button) findViewById(R.id.buttonLink);
+                bottone.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent i = new Intent(Intent.ACTION_VIEW);
+                        i.setData(Uri.parse(link));
+                        startActivity(i);
+                    }
+                });
+
+
             }
         }
-
     }
 
 
@@ -157,16 +141,25 @@ public class CardActivity extends AppCompatActivity {
         if (id == R.id.share) {
             Intent sendIntent = new Intent();
             sendIntent.setAction(Intent.ACTION_SEND);
-            link = p.getInfo();
+            link = promo.getInfo();
             if (link.contains(" - ")) {
                 String[] result = link.split(" - ");
                 link = result[1];
             }
-            String message = "Ciao volevo consigliarti questa promozione " + p.getNome() + " della " + p.getGestore().getNomeGestore() + "\nPer maggiori informazioni clicca" +
+            String message = "Ciao volevo consigliarti questa promozione " + promo.getNome() + " della " + promo.getGestore().getNomeGestore() + "\nPer maggiori informazioni clicca" +
                     " qui\n" + link;
             Intent intent = sendIntent.putExtra(Intent.EXTRA_TEXT, message);
             sendIntent.setType("text/plain");
             startActivity(sendIntent);
+        }
+        if (id == R.id.fav) {
+            System.out.println(promo.toString());
+            if (promo.isFav() == true) {
+                Toast.makeText(this, "Promozione già inclusa nella lista dei preferiti", Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(this, "Promozione inserita con successo", Toast.LENGTH_LONG).show();
+                promo.setFav(true);
+            }
         }
         return super.onOptionsItemSelected(item);
     }

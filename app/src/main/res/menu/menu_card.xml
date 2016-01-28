@@ -3,12 +3,19 @@
     xmlns:compat="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/fav"
+        android:icon="@mipmap/addfav"
+        android:orderInCategory="200"
+        android:title="Share"
+        compat:showAsAction="ifRoom">
+    </item>
+
+    <item
         android:id="@+id/share"
         android:icon="@mipmap/share"
         android:orderInCategory="200"
         android:title="Share"
         compat:showAsAction="ifRoom">
-
     </item>
 
 </menu>

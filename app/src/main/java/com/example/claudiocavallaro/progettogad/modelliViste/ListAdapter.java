@@ -2,6 +2,7 @@ package com.example.claudiocavallaro.progettogad.modelliViste;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,9 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     private Context context;
     private LayoutInflater inflater;
     private ClickListener clickListener;
+    private LongClickListener longClickListener;
+    private SparseBooleanArray selectedItems = new SparseBooleanArray();
+
 
     public ListAdapter(Context context, ArrayList<ModelloCardItem> models){
         super();
@@ -46,6 +50,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         viewHolder.imgThumbnail.setImageResource(modelloCardItem.getLogo());
         viewHolder.offerta.setText(modelloCardItem.getOfferta());
         viewHolder.prezzo.setText(modelloCardItem.getPrezzo());
+        viewHolder.itemView.setSelected(getSelectedItems().get(i, false));
     }
 
     @Override
@@ -57,6 +62,22 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         this.clickListener = clickListener;
     }
 
+    public LongClickListener getLongClickListener() {
+        return longClickListener;
+    }
+
+    public void setLongClickListener(LongClickListener longClickListener) {
+        this.longClickListener = longClickListener;
+    }
+
+    public SparseBooleanArray getSelectedItems() {
+        return selectedItems;
+    }
+
+    public void setSelectedItems(SparseBooleanArray selectedItems) {
+        this.selectedItems = selectedItems;
+    }
+
     class ViewHolder extends RecyclerView.ViewHolder{
 
         public ImageView imgThumbnail;
@@ -64,7 +85,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         public TextView offerta;
         public TextView prezzo;
 
-        public ViewHolder(View itemView) {
+        public ViewHolder(final View itemView) {
             super(itemView);
             imgThumbnail = (ImageView)itemView.findViewById(R.id.img_thumbnail);
             titolo = (TextView) itemView.findViewById(R.id.titoloOfferta);
@@ -74,7 +95,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
                 @Override
                 public void onClick(View v) {
                     if (clickListener != null){
-                        clickListener.itemClicked(v, getPosition());
+                        clickListener.itemClicked(v, getAdapterPosition());
                     }
                 }
             });
@@ -82,7 +103,18 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
             itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
-                    return false;
+                    /*if (getLongClickListener() != null){
+                        getLongClickListener().itemClicked(v, getAdapterPosition());
+                    }*/
+                    if (getSelectedItems().get(getAdapterPosition(), false)){
+                        getSelectedItems().delete(getAdapterPosition());
+                        itemView.setSelected(false);
+                    } else {
+                        getSelectedItems().put(getAdapterPosition(), true);
+                        itemView.setSelected(true);
+                        System.out.println(getSelectedItems());
+                    }
+                    return true;  //QUESTO TRUE FA SI CHE AL LUNGO CLICK NON SI INTERPRETI ANCHE IL CLICK CORTO
                 }
             });
         }
@@ -90,6 +122,10 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     }
 
     public interface ClickListener{
+        public void itemClicked(View view, int position);
+    }
+
+    public interface LongClickListener{
         public void itemClicked(View view, int position);
     }
 }

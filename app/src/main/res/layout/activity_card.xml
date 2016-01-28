@@ -85,23 +85,6 @@
         android:textColor="#FFFFFF"
         android:textSize="16dp" />
 
-<!--    <ImageView
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:id="@+id/addButton"
-        android:src="@drawable/add"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="5dp" />
-
-    <ImageView
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:id="@+id/removeButton"
-        android:src="@drawable/remove"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="5dp"
-        android:layout_toRightOf="@id/addButton"
-        android:layout_marginLeft="25dp"/>-->
 
 
 </RelativeLayout>

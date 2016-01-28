@@ -57,7 +57,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         this.clickListener = clickListener;
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    class ViewHolder extends RecyclerView.ViewHolder{
 
         public ImageView imgThumbnail;
         public TextView titolo;
@@ -70,16 +70,23 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
             titolo = (TextView) itemView.findViewById(R.id.titoloOfferta);
             offerta = (TextView) itemView.findViewById(R.id.offerta);
             prezzo = (TextView) itemView.findViewById(R.id.prezzo);
-            itemView.setOnClickListener(this);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (clickListener != null){
+                        clickListener.itemClicked(v, getPosition());
+                    }
+                }
+            });
+
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    return false;
+                }
+            });
         }
 
-
-        @Override
-        public void onClick(View v) {
-            if (clickListener != null){
-                clickListener.itemClicked(v, getPosition());
-            }
-        }
     }
 
     public interface ClickListener{

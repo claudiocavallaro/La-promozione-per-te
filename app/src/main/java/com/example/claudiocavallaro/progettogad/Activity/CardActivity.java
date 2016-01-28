@@ -65,20 +65,20 @@ public class CardActivity extends AppCompatActivity {
                     for (Caratteristiche c : listaCar) {
                         if (c.getNomeCaratteristica().contains("Minuti")){
                             if (c.getQuantita().equals("illimitati") || c.getQuantita().equals("Illimitati")){
-                                models.add(new ModelloCardInfo(c.getNomeCaratteristica() + " " + c.getQuantita() , R.drawable.minu));
+                                models.add(new ModelloCardInfo(c.getNomeCaratteristica() + " " + c.getQuantita() , R.drawable.chiamate));
                             } else {
-                                models.add(new ModelloCardInfo(c.getQuantita() + " " + c.getNomeCaratteristica(), R.drawable.minu));
+                                models.add(new ModelloCardInfo(c.getQuantita() + " " + c.getNomeCaratteristica(), R.drawable.chiamate));
                             }
                         }
                         if (c.getNomeCaratteristica().contains("SMS")){
                             if (c.getQuantita().equals("illimitati") || c.getQuantita().equals("Illimitati")){
-                                models.add(new ModelloCardInfo(c.getNomeCaratteristica() + " " + c.getQuantita() , R.drawable.sms));
+                                models.add(new ModelloCardInfo(c.getNomeCaratteristica() + " " + c.getQuantita() , R.drawable.mess));
                             } else {
-                                models.add(new ModelloCardInfo(c.getQuantita() + " " + c.getNomeCaratteristica(), R.drawable.sms));
+                                models.add(new ModelloCardInfo(c.getQuantita() + " " + c.getNomeCaratteristica(), R.drawable.mess));
                             }
                         }
                         if (c.getNomeCaratteristica().contains("Internet")){
-                            models.add(new ModelloCardInfo(c.getQuantita() + "GB " + c.getNomeCaratteristica(), R.drawable.internet));
+                            models.add(new ModelloCardInfo(c.getQuantita() + "GB " + c.getNomeCaratteristica(), R.drawable.www));
                         }
 
                     }

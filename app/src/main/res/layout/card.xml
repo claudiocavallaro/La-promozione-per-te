@@ -4,8 +4,10 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:id="@+id/imgOfferta"
         android:src="@drawable/minu"/>
 
@@ -14,8 +16,10 @@
         android:layout_height="wrap_content"
         android:id="@+id/textOfferta"
         android:textSize="16dp"
+        android:textColor="@color/colorPrimary"
         android:text="200 minuti"
         android:layout_toRightOf="@+id/imgOfferta"
+        android:layout_marginLeft="5dp"
         android:layout_centerVertical="true"/>
 
 </RelativeLayout>

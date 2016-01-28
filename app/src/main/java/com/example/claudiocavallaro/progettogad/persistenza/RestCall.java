@@ -35,7 +35,7 @@ import java.util.Iterator;
 
 public class RestCall extends AsyncTask<Object, Void, Object> {
 
-    private static String url = "http://192.168.2.8:8182/gad";
+    private static String url = "http://95.251.155.109:8182/gad";
 
     private ProgressDialog progressDialog;
     private ProgressBar spinner;

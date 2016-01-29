@@ -27,6 +27,8 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     private LongClickListener longClickListener;
     private SparseBooleanArray selectedItems = new SparseBooleanArray();
 
+    private int partenza = 0;
+
 
     public ListAdapter(Context context, ArrayList<ModelloCardItem> models){
         super();
@@ -78,6 +80,14 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         this.selectedItems = selectedItems;
     }
 
+    public int getPartenza() {
+        return partenza;
+    }
+
+    public void setPartenza(int partenza) {
+        this.partenza = partenza;
+    }
+
     class ViewHolder extends RecyclerView.ViewHolder{
 
         public ImageView imgThumbnail;
@@ -94,29 +104,35 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (clickListener != null){
+                    if (clickListener != null) {
                         clickListener.itemClicked(v, getAdapterPosition());
                     }
                 }
             });
 
-            itemView.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View v) {
+
+
+            if (partenza == 1){
+                System.out.println("arrivo qui dentro");
+                itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View v) {
                     /*if (getLongClickListener() != null){
                         getLongClickListener().itemClicked(v, getAdapterPosition());
                     }*/
-                    if (getSelectedItems().get(getAdapterPosition(), false)){
-                        getSelectedItems().delete(getAdapterPosition());
-                        itemView.setSelected(false);
-                    } else {
-                        getSelectedItems().put(getAdapterPosition(), true);
-                        itemView.setSelected(true);
-                        System.out.println(getSelectedItems());
+                        if (getSelectedItems().get(getAdapterPosition(), false)){
+                            getSelectedItems().delete(getAdapterPosition());
+                            itemView.setSelected(false);
+                        } else {
+                            getSelectedItems().put(getAdapterPosition(), true);
+                            itemView.setSelected(true);
+                            System.out.println(getSelectedItems());
+                        }
+                        return true;  //QUESTO TRUE FA SI CHE AL LUNGO CLICK NON SI INTERPRETI ANCHE IL CLICK CORTO
                     }
-                    return true;  //QUESTO TRUE FA SI CHE AL LUNGO CLICK NON SI INTERPRETI ANCHE IL CLICK CORTO
-                }
-            });
+                });
+            }
+
         }
 
     }

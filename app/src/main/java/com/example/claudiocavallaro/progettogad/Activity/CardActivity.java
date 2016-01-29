@@ -1,8 +1,6 @@
 package com.example.claudiocavallaro.progettogad.Activity;
 
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,24 +8,23 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
+
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.claudiocavallaro.progettogad.R;
-import com.example.claudiocavallaro.progettogad.modelliViste.ListAdapter;
+
 import com.example.claudiocavallaro.progettogad.modelliViste.ListAdapterCard;
 import com.example.claudiocavallaro.progettogad.modelliViste.ModelloCardInfo;
 import com.example.claudiocavallaro.progettogad.modello.Caratteristiche;
-import com.example.claudiocavallaro.progettogad.modello.Gestore;
+
 import com.example.claudiocavallaro.progettogad.modello.ListaGestori;
 import com.example.claudiocavallaro.progettogad.modello.Promozione;
-import com.facebook.share.model.ShareLinkContent;
-
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 /**
  * Created by claudiocavallaro on 04/12/15.

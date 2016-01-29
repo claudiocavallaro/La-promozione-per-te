@@ -15,12 +15,12 @@ import android.widget.Toast;
 import com.example.claudiocavallaro.progettogad.R;
 import com.example.claudiocavallaro.progettogad.modelliViste.ListAdapter;
 import com.example.claudiocavallaro.progettogad.modelliViste.ModelloCardItem;
-import com.example.claudiocavallaro.progettogad.modello.Gestore;
+
 import com.example.claudiocavallaro.progettogad.modello.ListaGestori;
 import com.example.claudiocavallaro.progettogad.modello.Promozione;
 
 import java.util.ArrayList;
-import java.util.List;
+
 
 /**
  * Created by claudiocavallaro on 28/01/16.
@@ -63,8 +63,8 @@ public class FavActivity extends AppCompatActivity {
         mRecycler = (RecyclerView) findViewById(R.id.recycler_view);
         layoutManager = new LinearLayoutManager(this);
         mRecycler.setLayoutManager(layoutManager);
-
         listAdapter = new ListAdapter(this, models);
+        listAdapter.setPartenza(1);
         listAdapter.setClickListener(new ListAdapter.ClickListener() {
             @Override
             public void itemClicked(View view, int position) {

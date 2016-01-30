@@ -47,7 +47,6 @@ public class CercaActivity extends AppCompatActivity {
     private RecyclerView mRecycler;
     private RecyclerView.LayoutManager layoutManager;
     private ListAdapter listAdapter;
-    private int iterazioni = 0;
 
 
     @Override

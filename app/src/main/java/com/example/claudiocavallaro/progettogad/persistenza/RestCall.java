@@ -66,76 +66,82 @@ public class RestCall extends AsyncTask<Object, Void, Object> {
 
     @Override
     protected Object doInBackground(Object... params) {
-        try {
-            HttpClient request = new DefaultHttpClient();
-            HttpGet get = new HttpGet(url);
-            HttpResponse response = request.execute(get);
-            int responseCode = response.getStatusLine().getStatusCode();
-            if (responseCode == 200) {
-                InputStream istream = response.getEntity().getContent();
-                BufferedReader reader = new BufferedReader(new InputStreamReader(istream));
-                String s = null;
-                StringBuffer sb = new StringBuffer();
-                while ((s = reader.readLine()) != null) {
-                    sb.append(s);
-                }
+        System.out.println("Eseguo restcall");
+        if (ListaGestori.getListaGestori().size() == 0){
+            System.out.println("è vuoto proseguo");
+            try {
+                HttpClient request = new DefaultHttpClient();
+                HttpGet get = new HttpGet(url);
+                HttpResponse response = request.execute(get);
+                int responseCode = response.getStatusLine().getStatusCode();
+                if (responseCode == 200) {
+                    InputStream istream = response.getEntity().getContent();
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(istream));
+                    String s = null;
+                    StringBuffer sb = new StringBuffer();
+                    while ((s = reader.readLine()) != null) {
+                        sb.append(s);
+                    }
 
-                JSONObject obj = new JSONObject(sb.toString());
-                JSONArray array = obj.getJSONArray("Progetto");
-                for (int i = 0; i < array.length(); i++) {
-                    JSONArray id = array.getJSONArray(i);
-                    String nome = id.getJSONObject(0).getString("Gestore");
-                    Gestore g = new Gestore(nome);
-                    if (nome.equals("VODAFONE")) {
-                        g.setLogo(R.drawable.vodata);
-                    }
-                    if (nome.equals("TIM")) {
-                        g.setLogo(R.drawable.tim);
-                    }
-                    if (nome.equals("WIND")) {
-                        g.setLogo(R.drawable.windta);
-                    }
-                    if (nome.equals("TRE")) {
-                        g.setLogo(R.drawable.treta);
-                    }
-                    JSONArray promo = id.getJSONArray(1);
-                    for (int j = 0; j < promo.length(); j++) {
-                        Promozione p = new Promozione();
-                        String nomeP = promo.getJSONArray(j).getJSONObject(0).getString("Nome");
-                        String costoP = promo.getJSONArray(j).getJSONObject(1).getString("Costo");
-                        String durataP = promo.getJSONArray(j).getJSONObject(2).getString("Durata");
-                        String rapportoP = promo.getJSONArray(j).getJSONObject(3).getString("RapportoQP");
-                        String infoP = promo.getJSONArray(j).getJSONObject(4).getString("Informazioni");
-
-                        p.setNome(nomeP);
-                        double costo = new Double(costoP);
-                        p.setCosto(((int) costo));
-                        p.setDurata(durataP);
-                        p.setRapportoQP(new Double(rapportoP));
-                        p.setInfo(infoP);
-
-                        JSONArray car = promo.getJSONArray(j).getJSONArray(5);
-                        for (int y = 0; y < car.length(); y++) {
-                            JSONObject ob = car.getJSONObject(y);
-                            Iterator<String> keys = ob.keys();
-                            while (keys.hasNext()) {
-                                String key = keys.next();
-                                String quantita = ob.getString(key);
-                                Caratteristiche caratteristiche = new Caratteristiche(key, quantita);
-                                p.addCaratteristica(caratteristiche);
-                            }
+                    JSONObject obj = new JSONObject(sb.toString());
+                    JSONArray array = obj.getJSONArray("Progetto");
+                    for (int i = 0; i < array.length(); i++) {
+                        JSONArray id = array.getJSONArray(i);
+                        String nome = id.getJSONObject(0).getString("Gestore");
+                        Gestore g = new Gestore(nome);
+                        if (nome.equals("VODAFONE")) {
+                            g.setLogo(R.drawable.vodata);
                         }
+                        if (nome.equals("TIM")) {
+                            g.setLogo(R.drawable.tim);
+                        }
+                        if (nome.equals("WIND")) {
+                            g.setLogo(R.drawable.windta);
+                        }
+                        if (nome.equals("TRE")) {
+                            g.setLogo(R.drawable.treta);
+                        }
+                        JSONArray promo = id.getJSONArray(1);
+                        for (int j = 0; j < promo.length(); j++) {
+                            Promozione p = new Promozione();
+                            String nomeP = promo.getJSONArray(j).getJSONObject(0).getString("Nome");
+                            String costoP = promo.getJSONArray(j).getJSONObject(1).getString("Costo");
+                            String durataP = promo.getJSONArray(j).getJSONObject(2).getString("Durata");
+                            String rapportoP = promo.getJSONArray(j).getJSONObject(3).getString("RapportoQP");
+                            String infoP = promo.getJSONArray(j).getJSONObject(4).getString("Informazioni");
 
-                        p.setGestore(g);
-                        //System.out.println(p);
-                        g.addPromo(p);
+                            p.setNome(nomeP);
+                            double costo = new Double(costoP);
+                            p.setCosto(((int) costo));
+                            p.setDurata(durataP);
+                            p.setRapportoQP(new Double(rapportoP));
+                            p.setInfo(infoP);
+
+                            JSONArray car = promo.getJSONArray(j).getJSONArray(5);
+                            for (int y = 0; y < car.length(); y++) {
+                                JSONObject ob = car.getJSONObject(y);
+                                Iterator<String> keys = ob.keys();
+                                while (keys.hasNext()) {
+                                    String key = keys.next();
+                                    String quantita = ob.getString(key);
+                                    Caratteristiche caratteristiche = new Caratteristiche(key, quantita);
+                                    p.addCaratteristica(caratteristiche);
+                                }
+                            }
+
+                            p.setGestore(g);
+                            //System.out.println(p);
+                            g.addPromo(p);
+                        }
+                        ListaGestori.addGestore(g);
                     }
-                    ListaGestori.addGestore(g);
-                }
 
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } else {
+            System.out.println("è pieno dovrei fermarmi");
         }
         return null;
     }

@@ -8,6 +8,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.example.claudiocavallaro.progettogad.R;
+import com.example.claudiocavallaro.progettogad.modello.ListaGestori;
 import com.example.claudiocavallaro.progettogad.persistenza.RestCall;
 
 /**
@@ -22,7 +23,6 @@ public class SplashScrennActivity extends Activity {
         this.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
 
         setContentView(R.layout.prova);
-
         AsyncTask call = new RestCall(this);
         RestCall.setContext(this);
         call.execute();

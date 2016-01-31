@@ -19,6 +19,8 @@ public class ListaGestori {
     }
 
 
+    public ListaGestori(){}
+
     public static ArrayList<Promozione> getListaPromozioni() {
         return listaPromozioni;
     }

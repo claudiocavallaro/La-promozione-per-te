@@ -1,17 +1,21 @@
 package com.example.claudiocavallaro.progettogad.Activity;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.claudiocavallaro.progettogad.modelliViste.Helper;
 import com.example.claudiocavallaro.progettogad.modelliViste.ListAdapter;
 import com.example.claudiocavallaro.progettogad.R;
 import com.example.claudiocavallaro.progettogad.modello.Gestore;
@@ -32,12 +36,32 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutManager;
     private ListAdapter listAdapter;
 
+    private Helper helper;
+    private SQLiteDatabase database;
+    private ArrayList<String> listaFav = new ArrayList<String>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        leggiFav();
+        System.out.println(listaFav);
+
         setToolBar();
         setInterface();
+    }
+
+    private void leggiFav() {
+        helper = new Helper(this);
+        database = helper.getReadableDatabase();
+        String[] column = {"name"};
+        Cursor cursor = database.query("fav", column, null, null, null, null, null);
+        while (cursor.moveToNext()) {
+            String fav = cursor.getString(0);
+            Log.v("id salvato", fav);
+            listaFav.add(fav);
+        }
     }
 
     public void setToolBar() {
@@ -48,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
     public void setInterface() {
         //ORDINAMENTO
         List<Promozione> appoggio = ListaGestori.getListaPromozioni();
-        if (ListaGestori.getListaPromozioni().size() == 0){
+        if (ListaGestori.getListaPromozioni().size() == 0) {
             ArrayList<Gestore> listaGestori = ListaGestori.getListaGestori();
             for (Gestore gestore : listaGestori) {
                 List<Promozione> listaPromo = gestore.getListaPromo();
@@ -71,12 +95,35 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
         for (int i = 0; i < appoggio.size(); i++) {
             Promozione p = appoggio.get(i);
             p.setId(i);
             String costo = String.valueOf((int) p.getCosto());
             models.add(new ModelloCardItem(p.getId(), p.getGestore().getLogo(), p.getNome(), p.getOfferta(), costo + " €"));
         }
+
+        for (int i = 0; i < listaFav.size(); i++) {
+            String s = listaFav.get(i);
+            for (int j = 0; j < appoggio.size(); j++) {
+                System.out.println("Confronto string s " + s + " con " + appoggio.get(j).getId());
+                if (appoggio.get(j).getId() == Integer.parseInt(s)) {
+                    System.out.println("true");
+                    appoggio.get(j).setFav(true);
+                    break;
+                } else {
+                    appoggio.get(j).setFav(false);
+                }
+            }
+        }
+
+        int k = 0;
+        for (Promozione p : appoggio) {
+            if (p.isFav() == true) {
+                k++;
+            }
+        }
+        System.out.println(k);
 
         //INTERFACCIA
         mRecycler = (RecyclerView) findViewById(R.id.recycler_view);
@@ -120,7 +167,7 @@ public class MainActivity extends AppCompatActivity {
             Intent i = new Intent(MainActivity.this, GestoreActivity.class);
             startActivity(i);
         }
-        if (id == R.id.action_fav){
+        if (id == R.id.action_fav) {
             Intent i = new Intent(MainActivity.this, FavActivity.class);
             startActivity(i);
         }

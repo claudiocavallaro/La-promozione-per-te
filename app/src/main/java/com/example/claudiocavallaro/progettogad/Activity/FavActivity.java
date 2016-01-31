@@ -1,8 +1,10 @@
 package com.example.claudiocavallaro.progettogad.Activity;
 
 import android.app.AlertDialog;
+import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -49,6 +51,10 @@ public class FavActivity extends AppCompatActivity {
                 p.setId(i);
                 listaPromo.add(p);
             }
+        }
+
+        if (listaPromo.size() == 0){
+            Toast.makeText(this, "Nessuna promozione inserita nei preferiti", Toast.LENGTH_SHORT).show();
         }
 
         models = new ArrayList<ModelloCardItem>();

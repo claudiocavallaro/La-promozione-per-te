@@ -91,7 +91,9 @@ public class RestCallNews extends AsyncTask<Object, Void, Object> {
                         String expressionNome = "(//div[@class='archive-text'])[" + i + "]/h2/a";
                         exprNome = xpath.compile(expressionNome);
                         String nome = exprNome.evaluate(doc);
-                        nome = replaceAll(nome);
+                        nome = nome.replaceAll("&egrave;","è");
+                        nome = nome.replaceAll("&agrave;","à");
+                        nome = nome.replaceAll("&euro;","€");
 
                         String expressionLink = "(//div[@class='archive-text'])[" + i + "]/h2/a/@href";
                         exprLink = xpath.compile(expressionLink);

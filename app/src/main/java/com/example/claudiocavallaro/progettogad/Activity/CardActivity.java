@@ -1,9 +1,13 @@
 package com.example.claudiocavallaro.progettogad.Activity;
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,6 +19,7 @@ import android.widget.Toast;
 
 import com.example.claudiocavallaro.progettogad.R;
 
+import com.example.claudiocavallaro.progettogad.modelliViste.Helper;
 import com.example.claudiocavallaro.progettogad.modelliViste.ListAdapterCard;
 import com.example.claudiocavallaro.progettogad.modelliViste.ModelloCardInfo;
 import com.example.claudiocavallaro.progettogad.modello.Caratteristiche;
@@ -35,10 +40,16 @@ public class CardActivity extends AppCompatActivity {
     private Promozione promo;
     private ArrayList<Promozione> lista = ListaGestori.getListaPromozioni();
 
+    private ArrayList<String> listaFav = new ArrayList<String>();
+    private Helper helper;
+    private SQLiteDatabase database;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_card);
+        //leggiFav();
+        //System.out.println(listaFav);
 
         Intent i = getIntent();
         int id = i.getIntExtra("promo", 0);
@@ -83,6 +94,7 @@ public class CardActivity extends AppCompatActivity {
 
                 }
 
+
                 ListAdapterCard listAdapterCard = new ListAdapterCard(this, models);
                 ListView listView = (ListView) findViewById(R.id.textOffertaBig);
                 listView.setAdapter(listAdapterCard);
@@ -107,6 +119,16 @@ public class CardActivity extends AppCompatActivity {
                     tvInformazioni.setText(info + "\n\nPer maggiori informazioni visita il sito web cliccando sul bottone sottostante");
                 }
 
+                /*for (String s : listaFav) {
+                    System.out.println("Stringa s " + s + " confronto con " + promo.getId() +  " e " + p.getId() );
+                    if (promo.getId() == Integer.parseInt(s)) {
+                        promo.setFav(true);
+                        System.out.println("true");
+                        break;
+                    } else {
+                        promo.setFav(false);
+                    }
+                }*/
 
                 System.out.println(link);
                 Button bottone = (Button) findViewById(R.id.buttonLink);
@@ -121,6 +143,18 @@ public class CardActivity extends AppCompatActivity {
 
 
             }
+        }
+    }
+
+    private void leggiFav() {
+        helper = new Helper(this);
+        database = helper.getReadableDatabase();
+        String[] column = {"name"};
+        Cursor cursor = database.query("fav", column, null, null, null, null, null);
+        while (cursor.moveToNext()) {
+            String fav = cursor.getString(0);
+            Log.v("id salvato", fav);
+            listaFav.add(fav);
         }
     }
 
@@ -155,10 +189,28 @@ public class CardActivity extends AppCompatActivity {
                 Toast.makeText(this, "Promozione già inclusa nella lista dei preferiti", Toast.LENGTH_LONG).show();
             } else {
                 Toast.makeText(this, "Promozione inserita con successo", Toast.LENGTH_LONG).show();
+                inserisci(promo.getId());
                 promo.setFav(true);
             }
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void inserisci(int id) {
+        helper = new Helper(this);
+        database = helper.getReadableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("name", String.valueOf(id));
+        database.insert("fav", "name", contentValues);
+
+        String[] column = {"name"};
+        Cursor cursor = database.query("fav", column, null, null, null, null, null);
+        while (cursor.moveToNext()) {
+            String fav = cursor.getString(0);
+            Log.v("id salvato", fav);
+            listaFav.add(fav);
+        }
+
     }
 
 

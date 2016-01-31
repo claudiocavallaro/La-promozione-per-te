@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.claudiocavallaro.progettogad.R;
+import com.example.claudiocavallaro.progettogad.modelliViste.Helper;
 import com.example.claudiocavallaro.progettogad.modelliViste.ListAdapter;
 import com.example.claudiocavallaro.progettogad.modelliViste.ModelloCardItem;
 
@@ -34,6 +35,9 @@ public class FavActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutManager;
     private ListAdapter listAdapter;
     private ArrayList<Promozione> listaPromo;
+
+    private Helper helper;
+    private SQLiteDatabase database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,9 +116,13 @@ public class FavActivity extends AppCompatActivity {
                 builder.setPositiveButton("Si", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        helper = new Helper(getApplicationContext());
+                        database = helper.getReadableDatabase();
+
                         for (int i = 0; i < listaPromo.size(); i++) {
                             Promozione p = listaPromo.get(i);
                             if (listAdapter.getSelectedItems().get(i) == true) {
+                                database.delete("fav", "name =" + p.getId(), null);
                                 p.setFav(false);
                             }
                         }

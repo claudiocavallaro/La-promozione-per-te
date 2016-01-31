@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         leggiFav();
-        System.out.println(listaFav);
+        System.out.println(listaFav.size());
 
         setToolBar();
         setInterface();
@@ -99,23 +99,30 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < appoggio.size(); i++) {
             Promozione p = appoggio.get(i);
             p.setId(i);
+            for (String s : listaFav){
+                if (p.getId() == Integer.parseInt(s)){
+                    p.setFav(true);
+                    break;
+                } else {
+                    p.setFav(false);
+                }
+            }
             String costo = String.valueOf((int) p.getCosto());
             models.add(new ModelloCardItem(p.getId(), p.getGestore().getLogo(), p.getNome(), p.getOfferta(), costo + " €"));
         }
 
-        for (int i = 0; i < listaFav.size(); i++) {
+        /*for (int i = 0; i < listaFav.size(); i++) {
             String s = listaFav.get(i);
             for (int j = 0; j < appoggio.size(); j++) {
                 System.out.println("Confronto string s " + s + " con " + appoggio.get(j).getId());
                 if (appoggio.get(j).getId() == Integer.parseInt(s)) {
                     System.out.println("true");
                     appoggio.get(j).setFav(true);
-                    break;
                 } else {
                     appoggio.get(j).setFav(false);
                 }
             }
-        }
+        }*/
 
         int k = 0;
         for (Promozione p : appoggio) {

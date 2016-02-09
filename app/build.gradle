@@ -3,7 +3,6 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.1"
-    useLibrary 'org.apache.http.legacy'
 
     defaultConfig {
         applicationId "com.example.claudiocavallaro.progettogad"
@@ -32,4 +31,6 @@ dependencies {
     compile files('/Users/claudiocavallaro/AndroidStudioProjects/ProgettoGad/commons-lang3-3.4.jar')
     compile files('src/main/jsoup-1.8.3.jar')
     compile files('src/main/htmlcleaner-2.15.jar')
+    compile files('src/main/res/org.apache.http.legacy.jar')
+    compile files('src/main/org.apache.http.legacy.jar')
 }

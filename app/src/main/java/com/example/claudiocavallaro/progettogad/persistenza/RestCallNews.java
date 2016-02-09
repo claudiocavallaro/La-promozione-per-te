@@ -30,6 +30,7 @@ import javax.xml.xpath.XPathFactory;
 public class RestCallNews extends AsyncTask<Object, Void, Object> {
 
     private static String url = "";
+    private String nomeGestore = "";
     private ProgressDialog progressDialog;
     private static Context context;
     private ResultActivity mActivity;
@@ -46,18 +47,22 @@ public class RestCallNews extends AsyncTask<Object, Void, Object> {
         switch (nome) {
             case "tim": {
                 url = "http://www.tariffando.it/tariffe-telefoniche/offerte-telefonia/tim/";
+                nomeGestore = nome.toUpperCase();
                 break;
             }
             case "vodafone": {
                 url = "http://www.tariffando.it/tariffe-telefoniche/offerte-telefonia/vodafone-2/";
+                nomeGestore = nome.toUpperCase();
                 break;
             }
             case "wind": {
                 url = "http://www.tariffando.it/tariffe-telefoniche/offerte-telefonia/wind/";
+                nomeGestore = nome.toUpperCase();
                 break;
             }
             case "tre": {
                 url = "http://www.tariffando.it/tariffe-telefoniche/offerte-telefonia/tre/";
+                nomeGestore = nome.toUpperCase();
                 break;
             }
         }
@@ -101,6 +106,7 @@ public class RestCallNews extends AsyncTask<Object, Void, Object> {
 
                         News news = new News(nome);
                         news.setLink(link);
+                        news.setGestore(g);
                         g.addNews(news);
                         System.out.println(nome);
                     }

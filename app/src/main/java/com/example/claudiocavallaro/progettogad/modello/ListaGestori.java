@@ -37,4 +37,13 @@ public class ListaGestori {
     public static void setListaPromoFav(ArrayList<Promozione> listaPromoFav) {
         ListaGestori.listaPromoFav = listaPromoFav;
     }
+
+    public Gestore cercaGestore(String nome){
+        for (Gestore gestore : ListaGestori.getListaGestori()){
+            if (nome.equals(gestore.getNomeGestore())){
+                return gestore;
+            }
+        }
+        return null;
+    }
 }

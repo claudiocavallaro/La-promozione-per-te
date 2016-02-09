@@ -7,6 +7,7 @@ public class News {
 
     private String titolo;
     private String link;
+    private Gestore gestore;
 
     public News(String titolo){
         this.setTitolo(titolo);
@@ -26,5 +27,13 @@ public class News {
 
     public void setLink(String link) {
         this.link = link;
+    }
+
+    public Gestore getGestore() {
+        return gestore;
+    }
+
+    public void setGestore(Gestore gestore) {
+        this.gestore = gestore;
     }
 }

@@ -94,6 +94,26 @@
                 android:value=".Activity.MainActivity" />
         </activity>
 
+        <activity
+            android:name=".Activity.CellActivity"
+            android:parentActivityName=".Activity.MainActivity"
+            android:label="Smartphone"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Activity.MainActivity" />
+        </activity>
+
+        <activity
+            android:name=".Activity.ResultCellActivity"
+            android:parentActivityName=".Activity.CellActivity"
+            android:label="Smartphone"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Activity.CellActivity" />
+        </activity>
+
     </application>
 
 </manifest>

@@ -42,9 +42,11 @@ public class Tab2 extends android.support.v4.app.Fragment {
 
         for (Gestore g : ListaGestori.getListaGestori()){
             if (g.getNomeGestore().equals(nome)){
-                List<News> listaNews = g.getListaNews();
-                for(News news : listaNews){
-                    models.add(new ModelloNews(news.getTitolo(), news.getLink()));
+                if (g.getListaNews().size() > models.size()){
+                    List<News> listaNews = g.getListaNews();
+                    for(News news : listaNews){
+                        models.add(new ModelloNews(news.getTitolo(), news.getLink()));
+                    }
                 }
             }
         }

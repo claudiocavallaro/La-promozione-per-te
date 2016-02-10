@@ -9,6 +9,7 @@ public class ListaGestori {
     private static ArrayList<Gestore> listaGestori = new ArrayList<Gestore>();
     private static ArrayList<Promozione> listaPromozioni = new ArrayList<Promozione>();
     private static ArrayList<Promozione> listaPromoFav = new ArrayList<Promozione>();
+    private static ArrayList<Telefono> listaTelefoni = new ArrayList<Telefono>();
 
     public static ArrayList<Gestore> getListaGestori() {
         return listaGestori;
@@ -38,10 +39,27 @@ public class ListaGestori {
         ListaGestori.listaPromoFav = listaPromoFav;
     }
 
+    public static ArrayList<Telefono> getListaTelefoni() {
+        return listaTelefoni;
+    }
+
+    public static void setListaTelefoni(ArrayList<Telefono> listaTelefoni) {
+        ListaGestori.listaTelefoni = listaTelefoni;
+    }
+
     public Gestore cercaGestore(String nome){
         for (Gestore gestore : ListaGestori.getListaGestori()){
             if (nome.equals(gestore.getNomeGestore())){
                 return gestore;
+            }
+        }
+        return null;
+    }
+
+    public static Telefono cercaTelefono(String nome){
+        for (Telefono telefono : ListaGestori.getListaTelefoni()){
+            if (nome.equals(telefono.getTelef())){
+                return telefono;
             }
         }
         return null;

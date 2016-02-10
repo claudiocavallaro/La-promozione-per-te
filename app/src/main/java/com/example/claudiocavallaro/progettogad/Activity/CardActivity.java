@@ -119,17 +119,6 @@ public class CardActivity extends AppCompatActivity {
                     tvInformazioni.setText(info + "\n\nPer maggiori informazioni visita il sito web cliccando sul bottone sottostante");
                 }
 
-                /*for (String s : listaFav) {
-                    System.out.println("Stringa s " + s + " confronto con " + promo.getId() +  " e " + p.getId() );
-                    if (promo.getId() == Integer.parseInt(s)) {
-                        promo.setFav(true);
-                        System.out.println("true");
-                        break;
-                    } else {
-                        promo.setFav(false);
-                    }
-                }*/
-
                 System.out.println(link);
                 Button bottone = (Button) findViewById(R.id.buttonLink);
                 bottone.setOnClickListener(new View.OnClickListener() {

@@ -22,6 +22,7 @@ import com.example.claudiocavallaro.progettogad.modello.Gestore;
 import com.example.claudiocavallaro.progettogad.modello.ListaGestori;
 import com.example.claudiocavallaro.progettogad.modelliViste.ModelloCardItem;
 import com.example.claudiocavallaro.progettogad.modello.Promozione;
+import com.example.claudiocavallaro.progettogad.persistenza.RestCallCell;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -176,6 +177,10 @@ public class MainActivity extends AppCompatActivity {
         }
         if (id == R.id.action_fav) {
             Intent i = new Intent(MainActivity.this, FavActivity.class);
+            startActivity(i);
+        }
+        if (id == R.id.cell){
+            Intent i = new Intent(MainActivity.this, CellActivity.class);
             startActivity(i);
         }
         return super.onOptionsItemSelected(item);

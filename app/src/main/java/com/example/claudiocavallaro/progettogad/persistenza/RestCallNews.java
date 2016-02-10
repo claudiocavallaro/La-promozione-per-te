@@ -96,9 +96,12 @@ public class RestCallNews extends AsyncTask<Object, Void, Object> {
                         String expressionNome = "(//div[@class='archive-text'])[" + i + "]/h2/a";
                         exprNome = xpath.compile(expressionNome);
                         String nome = exprNome.evaluate(doc);
-                        nome = nome.replaceAll("&egrave;","è");
-                        nome = nome.replaceAll("&agrave;","à");
-                        nome = nome.replaceAll("&euro;","€");
+                        nome = nome.replaceAll("&egrave;", "è");
+                        nome = nome.replaceAll("&agrave;", "à");
+                        nome = nome.replaceAll("&euro;", "€");
+                        nome = nome.replaceAll("&ldquo;", "\"");
+                        nome = nome.replaceAll("&rdquo;", "\"");
+                        nome = nome.replaceAll("&ugrave;", "ù");
 
                         String expressionLink = "(//div[@class='archive-text'])[" + i + "]/h2/a/@href";
                         exprLink = xpath.compile(expressionLink);
@@ -107,7 +110,10 @@ public class RestCallNews extends AsyncTask<Object, Void, Object> {
                         News news = new News(nome);
                         news.setLink(link);
                         news.setGestore(g);
-                        g.addNews(news);
+
+                        if (g.getListaNews().size() <= 10){
+                            g.addNews(news);
+                        }
                         System.out.println(nome);
                     }
                 }

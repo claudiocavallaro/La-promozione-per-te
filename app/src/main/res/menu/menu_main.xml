@@ -14,6 +14,12 @@
         android:title="Cerca per gestore" />
 
     <item
+        android:id="@+id/cell"
+        android:title="Smartphone" />
+
+    <item
         android:id="@+id/info"
         android:title="Info" />
+
+
 </menu>

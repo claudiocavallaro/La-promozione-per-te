@@ -7,18 +7,28 @@ import android.os.AsyncTask;
 import com.example.claudiocavallaro.progettogad.Activity.CellActivity;
 import com.example.claudiocavallaro.progettogad.R;
 import com.example.claudiocavallaro.progettogad.modello.ListaGestori;
+import com.example.claudiocavallaro.progettogad.modello.Specifiche;
 import com.example.claudiocavallaro.progettogad.modello.Telefono;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.htmlcleaner.CleanerProperties;
+import org.htmlcleaner.DomSerializer;
+import org.htmlcleaner.TagNode;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.jsoup.Jsoup;
+import org.w3c.dom.Document;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathExpression;
+import javax.xml.xpath.XPathFactory;
 
 /**
  * Created by claudiocavallaro on 09/02/16.
@@ -99,6 +109,10 @@ public class RestCallCell extends AsyncTask<Object, Void, Object> {
                             t.setPrezzo1(prezzo1);
                             t.setPrezzo2(prezzo2);
 
+                            Specifiche specifiche = trovaSpecifiche(marchio);
+
+                            t.setSpecifiche(specifiche);
+
                             ListaGestori.getListaTelefoni().add(t);
 
                         }
@@ -109,6 +123,90 @@ public class RestCallCell extends AsyncTask<Object, Void, Object> {
             }
         }
         return null;
+    }
+
+    private Specifiche trovaSpecifiche(String marchio) {
+        Specifiche s = new Specifiche();
+        String url = "";
+        if (marchio.equals("Apple")) {
+            url = "http://www.hdblog.it/apple/schede-tecniche/apple-iphone-6s-plus_i2949/";
+        }
+        if (marchio.equals("Samsung")) {
+            url = "http://samsung.hdblog.it/schede-tecniche/samsung-galaxy-s6-edge-plus_i2926/";
+        }
+        String content = "";
+        try {
+            content = Jsoup.connect(url).get().toString();
+
+            TagNode tag = new org.htmlcleaner.HtmlCleaner().clean(content);
+            Document doc = new DomSerializer(new CleanerProperties()).createDOM(tag);
+
+            XPath xpath = XPathFactory.newInstance().newXPath();
+            String so = "";
+            String dimensione = "";
+            String peso = "";
+            String processore = "";
+            String ram = "";
+            String schermo = "";
+            String risoluzione = "";
+            String fotocamera = "";
+            String frontale = "";
+            String batteria = "";
+
+            if (marchio.equals("Apple")){
+                so = trovaStringa(1, 1, xpath, doc);
+                dimensione = trovaStringa(1, 3, xpath, doc);
+                peso = trovaStringa(1, 4, xpath, doc);
+                processore = trovaStringa(5, 1, xpath, doc);
+                ram = trovaStringa(5, 4, xpath, doc);
+                schermo = trovaStringa(6, 1, xpath, doc);
+                risoluzione = trovaStringa(6, 2, xpath, doc);
+                fotocamera = trovaStringa(7, 1, xpath, doc);
+                frontale = trovaStringa(7, 12, xpath, doc);
+                batteria = trovaStringa(13, 4, xpath, doc);
+            }
+            if (marchio.equals("Samsung")){
+                so = trovaStringa(1, 1, xpath, doc);
+                dimensione = trovaStringa(1, 3, xpath, doc);
+                peso = trovaStringa(1, 4, xpath, doc);
+                processore = trovaStringa(5, 1, xpath, doc);
+                ram = trovaStringa(5, 5, xpath, doc);
+                schermo = trovaStringa(6, 1, xpath, doc);
+                risoluzione = trovaStringa(6, 2, xpath, doc);
+                fotocamera = trovaStringa(7, 1, xpath, doc);
+                frontale = trovaStringa(7, 13, xpath, doc);
+                batteria = trovaStringa(13, 2, xpath, doc);
+            }
+
+
+            s.setSo(so);
+            s.setDimensioni(dimensione);
+            s.setPeso(peso);
+            s.setProcessore(processore);
+            s.setRam(ram);
+            s.setSchermo(schermo);
+            s.setRisoluzione(risoluzione);
+            s.setFotocamera(fotocamera);
+            s.setFrontale(frontale);
+            s.setBatteria(batteria);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return s;
+    }
+
+    private String trovaStringa(int i, int i1, XPath xpath, Document doc) {
+        String risultato = "";
+        try {
+            XPathExpression expression;
+            String xPathResult = "//div[2]/div/ul[" + i + "]/li[" + i1 + "]";
+            expression = xpath.compile(xPathResult);
+            risultato = expression.evaluate(doc);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return risultato;
     }
 
     @Override

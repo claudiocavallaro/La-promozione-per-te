@@ -1,5 +1,7 @@
 package com.example.claudiocavallaro.progettogad.modello;
 
+import java.util.ArrayList;
+
 /**
  * Created by claudiocavallaro on 09/02/16.
  */
@@ -11,6 +13,8 @@ public class Telefono {
     private int capienza;
     private double prezzo1;
     private double prezzo2;
+
+    private Specifiche specifiche;
 
     public Telefono(String marchio, String modello, int capienza, double prezzo1, double prezzo2){
         this.setMarchio(marchio);
@@ -80,5 +84,13 @@ public class Telefono {
 
     public String getTelef(){
         return this.getModello() + " " + this.getCapienza() + " GB";
+    }
+
+    public Specifiche getSpecifiche() {
+        return specifiche;
+    }
+
+    public void setSpecifiche(Specifiche specifiche) {
+        this.specifiche = specifiche;
     }
 }

@@ -43,7 +43,7 @@ public class TabPrezzi extends android.support.v4.app.Fragment {
         Telefono t = ListaGestori.cercaTelefono(resultCellActivity.getNome());
 
         models.add(new ModelloCardGestore(String.valueOf(t.getPrezzo1()) + " €", R.drawable.euronics));
-        models.add(new ModelloCardGestore(String.valueOf(t.getPrezzo2()) + " €", R.drawable.stock));
+        models.add(new ModelloCardGestore(String.valueOf(t.getPrezzo2()) + " €", R.drawable.stock1));
 
         mRecycler = (RecyclerView) v.findViewById(R.id.recycler_view);
         layoutManager = new GridLayoutManager(this.getContext(), 2);
@@ -54,7 +54,7 @@ public class TabPrezzi extends android.support.v4.app.Fragment {
             @Override
             public void itemClicked(View view, int position) {
                 String url = "";
-                if (models.get(position).getLogo() == R.drawable.stock){
+                if (models.get(position).getLogo() == R.drawable.stock1){
                     if (resultCellActivity.getNome().contains("Apple")){
                         url = "http://www.stockisti.com/it/telefonia/telefonia-mobile/smartphone/shopby/disponibile-si/garanzia-italia/marca-apple.html";
                     }

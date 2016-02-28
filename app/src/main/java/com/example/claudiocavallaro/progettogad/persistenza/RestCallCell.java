@@ -35,7 +35,7 @@ import javax.xml.xpath.XPathFactory;
  */
 public class RestCallCell extends AsyncTask<Object, Void, Object> {
 
-    private static String url = "http://lapromozioneperte.netsons.org/cell.json";
+    private static String url = "http://192.168.2.3:8182/cell";
     private ProgressDialog progressDialog;
     private static Context context;
     private CellActivity cellActivity;

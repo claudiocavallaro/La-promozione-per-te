@@ -35,7 +35,7 @@ import java.util.Iterator;
 
 public class RestCall extends AsyncTask<Object, Void, Object> {
 
-    private static String url = "http://lapromozioneperte.netsons.org/prova.json";
+    private static String url = "http://192.168.2.3:8182/gad";
 
     private ProgressDialog progressDialog;
     private ProgressBar spinner;
@@ -124,6 +124,9 @@ public class RestCall extends AsyncTask<Object, Void, Object> {
                                 while (keys.hasNext()) {
                                     String key = keys.next();
                                     String quantita = ob.getString(key);
+                                    if (quantita.equals("MinutiILLIMITATI")){
+                                        quantita = "illimitati";
+                                    }
                                     Caratteristiche caratteristiche = new Caratteristiche(key, quantita);
                                     p.addCaratteristica(caratteristiche);
                                 }
